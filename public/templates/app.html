@@ -1,0 +1,156 @@
+<diV>
+    <script type="text/javascript">
+        $(function() {
+            $("#sortable").sortable({
+                axis: "x",
+                containment:'parent'
+            });
+            });
+    </script>
+<!--    <script>
+        $(function() {
+            $('.slide').droppable({
+                revert: true,
+                drop: function(event, ui) {
+                    ui.item.fadeTo(400, 1);
+
+            },
+                out: function (event, ui) {
+                    var self = ui;
+                    ui.helper.off('mouseup').on('mouseup', function () {
+                        $(this).remove();
+                        self.draggable.remove();
+                    });
+                }
+            });
+            $('.draggable').draggable({
+                helper : "clone",
+            });
+
+            $('.resizable').resizable({
+                aspectRatio: true,
+                handles: 'ne, se, sw, nw'
+            });
+
+            $(document).on('mouseover', '.rot', function () {
+                var tc = $(this);
+                tc.rotatable({
+                    handle: tc.children('.rotate.left, .rotate.right')
+                });
+                return true;
+            });
+            $("ul, li").disableSelection();
+        });
+    </script>-->
+    <script>
+        $(function(){
+        $('.draggable').draggable({
+            helper : "clone"
+        });
+
+        $('.slide').droppable({
+            revert: true,
+            drop: function(event, ui) {
+                ui.item.fadeTo(400, 1);
+
+            },
+            out: function (event, ui) {
+                var self = ui;
+                ui.helper.off('mouseup').on('mouseup', function () {
+                    $(this).remove();
+                    self.draggable.remove();
+                });
+            }
+        });
+
+            $(".resize").resizable({handles: 'ne, se, sw, nw'});
+            $(".resize").parent().draggable({
+                stack: "div"
+            });
+            $(".resize").rotate({
+                bind: {
+                    dblclick: function() {
+                        $(this).data('angle', $(this).data('angle')+90);
+                        var w = $(this).css('width');
+                        $(this).parent().rotate({ animateTo: $(this).data('angle')}).css({width: $(this).css('height'), height: w});
+
+                    }
+                }
+            });
+        });
+    </script>
+   <div class="container" >
+     <div class="row">
+            <div class="toolsandslide">
+            <div class="row2 col-md-1">
+                <div class="file" data-title="View">
+                    <span class="glyphicon glyphicon-eye-open fl" aria-hidden="true" ></span>
+                </div>
+                <div class="file" data-title="Open">
+                    <span class="glyphicon glyphicon-folder-open fl" aria-hidden="true" ></span>
+                </div>
+                <div class="file" data-title="Save">
+                    <span class="glyphicon glyphicon-floppy-save fl" aria-hidden="true" ></span>
+                </div>
+                <div class="file" data-title="Delete">
+                    <span class="glyphicon glyphicon-trash fl" aria-hidden="true" ></span>
+                </div>
+                <div class="file" data-title="Log out">
+                    <a href="/signout">
+                        <span class="glyphicon glyphicon-log-out fl" aria-hidden="true" ></span>
+                    </a>
+                </div>
+            </div>
+            <div class="row2 col-md-2 tools " >
+                <div class="tool" style="background: red">
+                    <span class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
+                    Image
+                </div>
+                <div class="tool">
+                    <span class="glyphicon glyphicon-film tl" aria-hidden="true"></span>
+                    Video
+                </div>
+                <div class="tool">
+                    <span class="glyphicon glyphicon-font tl" aria-hidden="true"></span>
+                    <br>
+                      Text
+                </div>
+                <div class="tool">
+                    <img src="img/rectangle.png">
+                    Rectangle
+                </div>
+                <div class="tool">
+                    <img src="img/ellips.png">
+                    Ellipse
+                </div>
+            </div>
+
+                <div class="row2 col-md-9 " >
+                        <div class="slide resize-container dropzone">
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" >
+            <div class="menuslides">
+                <div class="row1 col-md-1"></div>
+                <div class="row1 col-md-2 menu" ></div>
+                <div class="row1 col-md-9 "  >
+                    <div class="arrow">
+                        <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
+                    </div>
+                    <span id="sortable">
+                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
+                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
+                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
+                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
+                    </span>
+                    <div class="arrow">
+                        <div class="glyphicon glyphicon-menu-right fl" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div >
+</div>

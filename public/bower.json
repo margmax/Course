@@ -1,0 +1,17 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "authors": [
+    "AlksnkMax <nnwen0609@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "hui.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

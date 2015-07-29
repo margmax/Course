@@ -1,0 +1,140 @@
+.resize
+{
+    position:absolute;
+    border-color:black;
+    border-style:solid;
+    border-width:1px;
+}
+
+.ui-resizable-se{
+    width: 7px;
+    height: 7px;
+    background-color: #D0F2F0;
+    border-color:#45C1B1;
+    border-style:solid;
+    border-width:1px;
+    bottom:0px;
+    right:0px;
+}
+
+.ui-resizable-sw{
+    width: 7px;
+    height: 7px;
+    background-color: #D0F2F0;
+    border-color:#45C1B1;
+    border-style:solid;
+    border-width:1px;
+    bottom:0px;
+    left:0px;
+}
+.ui-resizable-nw{
+    width: 7px;
+    height: 7px;
+    background-color: #D0F2F0;
+    border-color:#45C1B1;
+    border-style:solid;
+    border-width:1px;
+    top:0px;
+    left:0px;
+}
+.ui-resizable-ne{
+    width: 7px;
+    height: 7px;
+    background-color: #D0F2F0;
+    border-color:#45C1B1;
+    border-style:solid;
+    border-width:1px;
+    top:0px;
+    right:0px;
+}
+
+.col-md-1{
+    background: #292E29  ;
+}
+.row1{
+    height: 130px;
+}
+.tl{
+    font-size:40px;
+}
+.fl{
+    font-size: 30px;
+}
+.row2{
+    height: 530px;
+}
+.container{
+    width: 90%;
+    height: 90%;
+    background: #474747;
+}
+.presentation{
+    margin-top: 20px;
+    background: black;
+    height: 110px;
+}
+.tool{
+    text-align: center;
+    width: 96px;
+    height: 100px;
+    color: white;
+    font-size: large;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 37px;
+    z-index: 5;
+}
+.file{
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 50px;
+    margin: 5px;
+    padding: 10px;
+}
+.arrow{
+    text-align: center;
+    width: 50px;
+    color:white;
+    display: inline-block;
+    margin-left: 20px;
+
+    margin-top:50px ;
+}
+.arrow:hover{
+    opacity: 0.5;
+}
+.tool:hover{
+    border: 3px solid rgba(255,255,255,0.4);
+}
+.file:hover{
+    background: #474747;
+}
+.slide{
+    width:95%;
+    height: 95%;
+    background: white;
+    margin: 10px;
+    z-index: 3;
+}
+.file:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    z-index: 1;
+    color: white;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: none;
+    width: 60px;
+}
+.minislide{
+    display: inline-block;
+    width:150px;
+    height:100px;
+    background: white;
+    margin:10px;
+}
+

@@ -1,0 +1,24 @@
+{
+  "name": "Course",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies" : {
+  	"express": "4.x",
+      "body-parser": "*",
+      "cookie-parser": "*",
+      "express-session": "*",
+      "bcrypt-nodejs": "*",
+      "ejs": "*",
+      "passport": "*",
+      "passport-local": "*",
+      "mysql": "*",
+      "bookshelf": "0.5",
+      "morgan": "^1.5.1"
+      },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
