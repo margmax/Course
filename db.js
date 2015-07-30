@@ -3,7 +3,7 @@ var Bookshelf = require('bookshelf');
 var config = {
    host: 'localhost',  // your host
    user: 'root', // your database user
-   password: 'root', // your database password
+   password: '', // your database password
    database: 'ipresentation',
    charset: 'UTF8_GENERAL_CI'
 };

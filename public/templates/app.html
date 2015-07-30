@@ -48,13 +48,13 @@
                 <div class="row2 col-md-9 " >
                         <div class="slide">
                             <div ng-repeat="stuff in stuffs">
-                                <div ng-show="stuff.b">
+                                <div ng-show="stuff.boolShow">
                                     <div dnd-draggable="true" class="draggable"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
-                                        style={{stuff.a}}>
+                                        style={{stuff.style}}>
                                     </div>
                                 </div>
                             </div>

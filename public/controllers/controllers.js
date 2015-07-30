@@ -3,8 +3,8 @@ var courseAppControllers = angular.module('courseAppControllers', ['ngRoute']);
 courseAppControllers.controller('appController', ['$scope',
 function($scope) {
     $scope.stuffs = [];
-    $scope.submit = function(c, d) {
-       $scope.stuffs.push({a: c, b: d});
+    $scope.submit = function(styleS, boolS) {
+       $scope.stuffs.push({style: styleS, boolShow: boolS});
    }
 }]);
 
