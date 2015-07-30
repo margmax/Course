@@ -1,6 +1,7 @@
 var CourseApp = angular.module('CourseApp', [
   'ui.router',
-  'courseAppControllers'
+  'courseAppControllers',
+  'dnd'
   ]);
 
 CourseApp.config(['$stateProvider', '$urlRouterProvider',
