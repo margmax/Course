@@ -2,9 +2,17 @@ var courseAppControllers = angular.module('courseAppControllers', ['ngRoute']);
 
 courseAppControllers.controller('appController', ['$scope',
 function($scope) {
-    $scope.stuffs = [];
-    $scope.submit = function(styleS, boolS) {
-       $scope.stuffs.push({style: styleS, boolShow: boolS});
+    $scope.rectangles = [];
+    $scope.ellipses = [];
+    $scope.slides = [];
+    $scope.submitSlide = function(styleS, boolS) {
+       $scope.slides.push('slide');
+   }
+    $scope.submitRectangle = function(styleS, boolS) {
+       $scope.rectangles.push({style: styleS, boolShow: boolS});
+   }
+   $scope.submitEllipse = function(styleS, boolS) {
+       $scope.ellipses.push({style: styleS, boolShow: boolS});
    }
 }]);
 

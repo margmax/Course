@@ -177,6 +177,14 @@ opacity: 0.5;
     margin:10px;
 }
 
+.minislidePlus{
+    display: inline-block;
+    width:150px;
+    height:100px;
+    background: white;
+    margin:10px;
+}
+
 
 
 

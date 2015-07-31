@@ -1,4 +1,4 @@
-<diV>
+<div>
    <div class="container" >
         <div class="row" ng-controller="appController">
             <div class="toolsandslide">
@@ -35,11 +35,11 @@
                     <br>
                       Text
                 </div>
-                <div class="tool" ng-click="submit('border: 3px solid red', true)">
+                <div class="tool" ng-click="submitRectangle('border: 3px solid red', true)">
                     <img src="img/rectangle.png">
                     Rectangle
                 </div>
-                <div class="tool">
+                <div class="tool" ng-click="submitEllipse('border: 3px solid red; border-radius: 50%', true)">
                     <img src="img/ellips.png">
                     Ellipse
                 </div>
@@ -47,15 +47,24 @@
 
                 <div class="row2 col-md-9 " >
                         <div class="slide">
-                            <div ng-repeat="stuff in stuffs">
-                                <div ng-show="stuff.boolShow">
+                            <div ng-repeat="rectangle in rectangles">
+                                <div ng-show="rectangle.boolShow">
                                     <div dnd-draggable="true" class="draggable"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
-                                        style={{stuff.style}}>
-                                    </div>
+                                        style={{rectangle.style}}></div>
+                                </div>
+                            </div>
+                            <div ng-repeat="ellipse in ellipses">
+                                <div ng-show="ellipse.boolShow">
+                                    <div dnd-draggable="true" class="draggable"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="" 
+                                        style={{ellipse.style}}></div>
                                 </div>
                             </div>
                         </div>
@@ -63,8 +72,8 @@
             </div>
         </div>
 
-        <div class="row" >
-            <div class="menuslides">
+        <div class="row">
+            <div class="menuslides" ng-controller="appController">
                 <div class="row1 col-md-1"></div>
                 <div class="row1 col-md-2 menu" ></div>
                 <div class="row1 col-md-9 "  >
@@ -72,10 +81,10 @@
                         <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
                     </div>
                     <span id="sortable">
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
+                        <div  class="ui-widget ui-corner-all ui-state-error minislidePlus" ng-click="submitSlide()"></div>
+                        <div ng-repeat="slide in slides" style="position: absolute">
+                            <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
+                        </div>
                     </span>
                     <div class="arrow">
                         <div class="glyphicon glyphicon-menu-right fl" aria-hidden="true"></div>
