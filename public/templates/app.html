@@ -1,6 +1,6 @@
-<diV>
+<div >
    <div class="container" >
-        <div class="row" ng-controller="appController">
+        <div class="row" ng-controller="appController" >
             <div class="toolsandslide">
             <div class="row2 col-md-1">
                 <div class="file" data-title="View">
@@ -15,16 +15,24 @@
                 <div class="file" data-title="Delete">
                     <span class="glyphicon glyphicon-trash fl" aria-hidden="true" ></span>
                 </div>
-                <div class="file" data-title="Log out">
+                <div class="file" data-title="Log out" >
                     <a href="/signout">
                         <span class="glyphicon glyphicon-log-out fl" aria-hidden="true" ></span>
                     </a>
                 </div>
             </div>
             <div class="row2 col-md-2 tools " >
-                <div class="tool" style="background: red">
-                    <span class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
-                    Image
+                <div class="tool up-buttons" >
+
+                    <div ngf-select="" ngf-drop="" ng-model="files" ng-model-rejected="rejFiles" ngf-multiple="multiple"
+                         ngf-accept="accept" accept="{{acceptSelect}}" ng-disabled="disabled" ngf-capture="capture"
+                         ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" ngf-min-size="minSize"
+                         ngf-max-size="maxSize" ngf-keep="keep" ngf-keep-distinct="keepDistinct" ngf-reset-on-click="resetOnClick"
+                         ngf-reset-model-on-click="resetModelOnClick" ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">
+                        <span  class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
+                        Image
+                    </div>
+
                 </div>
                 <div class="tool">
                     <span class="glyphicon glyphicon-film tl" aria-hidden="true"></span>
@@ -36,17 +44,20 @@
                       Text
                 </div>
                 <div class="tool" ng-click="submit('border: 3px solid red', true)">
-                    <img src="img/rectangle.png">
+                    <img src="../img/rectangle.png">
                     Rectangle
                 </div>
-                <div class="tool">
-                    <img src="img/ellips.png">
+                <div class="tool" ng-click="submit('width: 100px;height: 100px; background: yellow; border-radius:50%',true)">
+                    <img src="../img/ellips.png">
                     Ellipse
                 </div>
             </div>
 
                 <div class="row2 col-md-9 " >
-                        <div class="slide">
+                        <div class="slide resize-container dropzone preview"
+                             dnd-droppable = "true"
+                             dnd-on-drop = "drop($dropmodel, $dragmodel)"
+                             dnd-model = "dropmodel" >
                             <div ng-repeat="stuff in stuffs">
                                 <div ng-show="stuff.boolShow">
                                     <div dnd-draggable="true" class="draggable"
@@ -55,6 +66,7 @@
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
                                         style={{stuff.style}}>
+                                        <img ngf-src="files[0]" ng-show="files[0].type.indexOf('image') > -1" ngf-accept="'image/*'" class="image draggable">
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +84,9 @@
                         <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
                     </div>
                     <span id="sortable">
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
+                        <div  class="ui-widget ui-corner-all ui-state-error minislide">
+                            <span class="glyphicon glyphicon-plus-sign " aria-hidden="true"></span>
+                        </div>
                         <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
                         <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
                         <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
