@@ -26,7 +26,7 @@
                     <span class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
                     Image
                 </div>
-                <div class="tool">
+                <div class="tool" ng-click="chooseVideo()">
                     <span class="glyphicon glyphicon-film tl" aria-hidden="true"></span>
                     Video
                 </div>
@@ -47,6 +47,17 @@
 
                 <div class="row2 col-md-9 " >
                         <div class="slide">
+                            <div ng-repeat="video in videos">
+                                <div ng-show="video.boolShow">
+                                    <div dnd-draggable="true" class="draggable"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="">
+                                        <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
                             <div ng-repeat="rectangle in rectangles">
                                 <div ng-show="rectangle.boolShow">
                                     <div dnd-draggable="true" class="draggable"
@@ -80,10 +91,10 @@
                     <div class="arrow">
                         <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
                     </div>
-                    <span id="sortable">
+                    <span id="sortable" style="position: absolute">
                         <div  class="ui-widget ui-corner-all ui-state-error minislidePlus" ng-click="submitSlide()"></div>
                         <div ng-repeat="slide in slides" style="position: absolute">
-                            <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
+                            <div  class="ui-widget ui-corner-all ui-state-error minislide" style="position: absolute"></div>
                         </div>
                     </span>
                     <div class="arrow">
