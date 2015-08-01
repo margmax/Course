@@ -195,6 +195,14 @@ opacity: 0.5;
     margin:10px;
 }
 
+.minislidePlus{
+    display: inline-block;
+    width:150px;
+    height:100px;
+    background: white;
+    margin:10px;
+}
+
 
 
 
@@ -295,7 +303,7 @@ opacity: 0.5;
     display: inline-block;
     width:150px;
     height:100px;
-    background: white;
+    background: red;
     margin:10px;
     color: black;
     position: absolute;

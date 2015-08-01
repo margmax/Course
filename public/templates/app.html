@@ -1,6 +1,6 @@
-<div >
+<div>
    <div class="container" >
-        <div class="row" ng-controller="appController" >
+        <div class="row" ng-controller="appController">
             <div class="toolsandslide">
             <div class="row2 col-md-1">
                 <div class="file" data-title="View">
@@ -15,59 +15,78 @@
                 <div class="file" data-title="Delete">
                     <span class="glyphicon glyphicon-trash fl" aria-hidden="true" ></span>
                 </div>
-                <div class="file" data-title="Log out" >
+                <div class="file" data-title="Log out">
                     <a href="/signout">
                         <span class="glyphicon glyphicon-log-out fl" aria-hidden="true" ></span>
                     </a>
                 </div>
             </div>
             <div class="row2 col-md-2 tools " >
-                <div class="tool up-buttons" >
-
-                    <div ngf-select="" ngf-drop="" ng-model="files" ng-model-rejected="rejFiles" ngf-multiple="multiple"
-                         ngf-accept="accept" accept="{{acceptSelect}}" ng-disabled="disabled" ngf-capture="capture"
-                         ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" ngf-min-size="minSize"
-                         ngf-max-size="maxSize" ngf-keep="keep" ngf-keep-distinct="keepDistinct" ngf-reset-on-click="resetOnClick"
-                         ngf-reset-model-on-click="resetModelOnClick" ngf-allow-dir="allowDir" class="drop-box" ngf-drop-available="dropAvailable">
-                        <span  class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
-                        Image
-                    </div>
-
+                <div class="tool" >
+                    <span class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
+                    Image
                 </div>
-                <div class="tool">
+                <div class="tool" ng-click="chooseVideo()">
                     <span class="glyphicon glyphicon-film tl" aria-hidden="true"></span>
                     Video
                 </div>
-                <div class="tool">
+                <div class="tool" ng-click="addText()">
                     <span class="glyphicon glyphicon-font tl" aria-hidden="true"></span>
                     <br>
                       Text
                 </div>
-                <div class="tool" ng-click="submit('border: 3px solid red', true)">
-                    <img src="../img/rectangle.png">
+                <div class="tool" ng-click="submitRectangle('border: 3px solid red', true)">
+                    <img src="img/rectangle.png">
                     Rectangle
                 </div>
-                <div class="tool" ng-click="submit('width: 100px;height: 100px; background: yellow; border-radius:50%',true)">
-                    <img src="../img/ellips.png">
+                <div class="tool" ng-click="submitEllipse('border: 3px solid red; border-radius: 50%', true)">
+                    <img src="img/ellips.png">
                     Ellipse
                 </div>
             </div>
 
                 <div class="row2 col-md-9 " >
-                        <div class="slide resize-container dropzone preview"
-                             dnd-droppable = "true"
-                             dnd-on-drop = "drop($dropmodel, $dragmodel)"
-                             dnd-model = "dropmodel" >
-                            <div ng-repeat="stuff in stuffs">
-                                <div ng-show="stuff.boolShow">
+                        <div class="slide">
+                            <div ng-repeat="text in texts">
+                                <div ng-show="true">
+                                    <div dnd-draggable="true" class="draggable"
+                                         dnd-containment="'.slide'"
+                                         dnd-rotatable = "true"
+                                         dnd-resizable = "true"
+                                         dnd-on-dragend="">
+                                        <textarea></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-repeat="video in videos">
+                                <div ng-show="video.boolShow">
+                                    <div dnd-draggable="true" class="draggable"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="">
+                                        <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-repeat="rectangle in rectangles">
+                                <div ng-show="rectangle.boolShow">
                                     <div dnd-draggable="true" class="draggable"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
-                                        style={{stuff.style}}>
-                                        <img ngf-src="files[0]" ng-show="files[0].type.indexOf('image') > -1" ngf-accept="'image/*'" class="image draggable">
-                                    </div>
+                                        style={{rectangle.style}}></div>
+                                </div>
+                            </div>
+                            <div ng-repeat="ellipse in ellipses">
+                                <div ng-show="ellipse.boolShow">
+                                    <div dnd-draggable="true" class="draggable"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="" 
+                                        style={{ellipse.style}}></div>
                                 </div>
                             </div>
                         </div>
@@ -75,21 +94,19 @@
             </div>
         </div>
 
-        <div class="row" >
-            <div class="menuslides">
+        <div class="row">
+            <div class="menuslides" ng-controller="appController">
                 <div class="row1 col-md-1"></div>
                 <div class="row1 col-md-2 menu" ></div>
                 <div class="row1 col-md-9 "  >
                     <div class="arrow">
                         <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
                     </div>
-                    <span id="sortable">
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide">
-                            <span class="glyphicon glyphicon-plus-sign " aria-hidden="true"></span>
+                    <span id="sortable" style="position: absolute">
+                        <div  class="ui-widget ui-corner-all ui-state-error minislidePlus" ng-click="submitSlide()"></div>
+                        <div ng-repeat="slide in slides" style="position: absolute">
+                            <div  class="ui-widget ui-corner-all ui-state-error minislide" style="position: absolute"></div>
                         </div>
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
-                        <div  class="ui-widget ui-corner-all ui-state-error minislide"></div>
                     </span>
                     <div class="arrow">
                         <div class="glyphicon glyphicon-menu-right fl" aria-hidden="true"></div>
