@@ -47,6 +47,8 @@
 
                 <div class="row2 col-md-9 " >
                         <div class="slide">
+                        <fieldset>
+
                             <div ng-repeat="video in videos">
                                 <div ng-show="video.boolShow">
                                     <div dnd-draggable="true" class="draggable"
@@ -54,7 +56,7 @@
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="">
-                                        <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen></iframe>
+                                        <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
                                     </div>
                                 </div>
                             </div>
