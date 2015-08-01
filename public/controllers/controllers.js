@@ -1,7 +1,7 @@
 var courseAppControllers = angular.module('courseAppControllers', ['ngRoute']);
 
-courseAppControllers.controller('appController', ['$scope',
-function($scope) {
+courseAppControllers.controller('appController', ['$scope', '$sce',
+function($scope, $sce) {
     $scope.rectangles = [];
     $scope.ellipses = [];
     $scope.slides = [];
@@ -16,6 +16,7 @@ function($scope) {
     }
     $scope.submitVideo = function(linkS, boolS) {
     	alert(linkS);
+    	linkS = $sce.trustAsResourceUrl(linkS);
     	$scope.videos.push({link: linkS, boolShow: boolS});
     }
     $scope.submitSlide = function(styleS, boolS) {

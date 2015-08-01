@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="row2 col-md-2 tools " >
-                <div class="tool" >
+                <div class="tool" style="background: red">
                     <span class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
                     Image
                 </div>
@@ -30,7 +30,7 @@
                     <span class="glyphicon glyphicon-film tl" aria-hidden="true"></span>
                     Video
                 </div>
-                <div class="tool" ng-click="addText()">
+                <div class="tool">
                     <span class="glyphicon glyphicon-font tl" aria-hidden="true"></span>
                     <br>
                       Text
@@ -47,17 +47,8 @@
 
                 <div class="row2 col-md-9 " >
                         <div class="slide">
-                            <div ng-repeat="text in texts">
-                                <div ng-show="true">
-                                    <div dnd-draggable="true" class="draggable"
-                                         dnd-containment="'.slide'"
-                                         dnd-rotatable = "true"
-                                         dnd-resizable = "true"
-                                         dnd-on-dragend="">
-                                        <textarea></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                        <fieldset>
+
                             <div ng-repeat="video in videos">
                                 <div ng-show="video.boolShow">
                                     <div dnd-draggable="true" class="draggable"
@@ -65,7 +56,7 @@
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="">
-                                        <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen></iframe>
+                                        <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
                                     </div>
                                 </div>
                             </div>
