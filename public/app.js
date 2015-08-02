@@ -1,7 +1,8 @@
 var CourseApp = angular.module('CourseApp', [
   'ui.router',
   'courseAppControllers',
-  'dnd'
+  'dnd',
+  'cloudinary'
   ]);
 
 CourseApp.config(['$stateProvider', '$urlRouterProvider',

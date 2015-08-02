@@ -1,11 +1,12 @@
-var courseAppControllers = angular.module('courseAppControllers', ['ngRoute']);
+var courseAppControllers = angular.module('courseAppControllers', ['ngRoute', 'angularFileUpload']);
 
-courseAppControllers.controller('appController', ['$scope', '$sce',
-function($scope, $sce) {
+courseAppControllers.controller('appController', ['$scope', '$sce', '$upload',
+function($scope, $sce, $upload) {
     $scope.rectangles = [];
     $scope.ellipses = [];
     $scope.slides = [];
     $scope.videos = [];
+    $scope.images = [];
     $scope.boolShowVideoFrame = false;
     $scope.chooseVideo = function() {
     	var s = prompt("Enter the link:", '');
@@ -18,7 +19,7 @@ function($scope, $sce) {
     	linkS = $sce.trustAsResourceUrl(linkS);
     	$scope.videos.push({link: linkS, boolShow: boolS});
     }
-    $scope.submitSlide = function(styleS, boolS) {
+    $scope.submitSlide = function() {
        	$scope.slides.push('slide');
    	}
     $scope.submitRectangle = function(styleS, boolS) {
@@ -28,6 +29,27 @@ function($scope, $sce) {
    	$scope.submitEllipse = function(styleS, boolS) {
        	$scope.ellipses.push({style: styleS, boolShow: boolS});
    	}
+   	$scope.$watch('files', function() {
+      if (!$scope.files) return;
+      $scope.files.forEach(function(file){
+        $scope.upload = $upload.upload({
+          url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
+          data: {upload_preset: $.cloudinary.config().upload_preset, tags: 'myphotoalbum'},
+          file: file
+        }).progress(function (e) {
+          file.progress = Math.round((e.loaded * 100.0) / e.total);
+          file.status = "Uploading... " + file.progress + "%";
+          if(!$scope.$$phase) {
+            $scope.$apply();
+          }
+        }).success(function (data, status, headers, config) {
+          $scope.images.push(data);
+          if(!$scope.$$phase) {
+            $scope.$apply();
+          }
+        });
+      });
+    });
 }]);
 
 /*courseAppControllers.controller('MainCtrl', ['$scope' ,

@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="row2 col-md-2 tools " >
-                <div class="tool" style="background: red">
+                <div class="tool" style="background: red" ng-file-select ng-multiple="true" title="upload" resetOnClick="true" ng-model="files">
                     <span class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
                     Image
                 </div>
@@ -50,7 +50,6 @@
                         <fieldset>
 
                             <div ng-repeat="video in videos">
-                                <div ng-show="video.boolShow">
                                     <div dnd-draggable="true" class="draggable"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
@@ -58,27 +57,31 @@
                                         dnd-on-dragend="">
                                         <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
                                     </div>
+                            </div>
+                            <div ng-repeat="image in images">
+                                <div dnd-draggable="true" class="draggable"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="">
+                                        <img width="100%" height="100%" ng-src="{{image.secure_url}}">
                                 </div>
                             </div>
                             <div ng-repeat="rectangle in rectangles">
-                                <div ng-show="rectangle.boolShow">
                                     <div dnd-draggable="true" class="draggable"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
                                         style={{rectangle.style}}></div>
-                                </div>
                             </div>
                             <div ng-repeat="ellipse in ellipses">
-                                <div ng-show="ellipse.boolShow">
                                     <div dnd-draggable="true" class="draggable"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
                                         style={{ellipse.style}}></div>
-                                </div>
                             </div>
                         </div>
                 </div>
@@ -95,9 +98,7 @@
                     </div>
                     <span id="sortable" style="position: absolute">
                         <div  class="ui-widget ui-corner-all ui-state-error minislidePlus" ng-click="submitSlide()"></div>
-                        <div ng-repeat="slide in slides" style="position: absolute">
-                            <div  class="ui-widget ui-corner-all ui-state-error minislide" style="position: absolute"></div>
-                        </div>
+                        <div ng-repeat="slide in slides track by $index" style="display: inline-block" class="ui-widget ui-corner-all ui-state-error minislide"></div>
                     </span>
                     <div class="arrow">
                         <div class="glyphicon glyphicon-menu-right fl" aria-hidden="true"></div>
