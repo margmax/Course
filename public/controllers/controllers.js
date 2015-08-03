@@ -7,6 +7,7 @@ function($scope, $sce, $upload) {
     $scope.slides = [];
     $scope.videos = [];
     $scope.images = [];
+    $scope.texts = [];
     $scope.boolShowVideoFrame = false;
     $scope.chooseVideo = function() {
       var s = prompt("Enter the link:", '');
@@ -18,6 +19,9 @@ function($scope, $sce, $upload) {
       alert(linkS);
       linkS = $sce.trustAsResourceUrl(linkS);
       $scope.videos.push({link: linkS, boolShow: boolS});
+    }
+    $scope.submitText=function(){
+        $scope.texts.push('text');
     }
     $scope.submitSlide = function() {
         $scope.slides.push('slide');
@@ -52,12 +56,3 @@ function($scope, $sce, $upload) {
     });
 }]);
 
-/*courseAppControllers.controller('MainCtrl', ['$scope' ,
-  function($scope) {
-    $scope.title = 1;
-    $scope.content = 2;
-    $scope.stuffs = [];
-    $scope.submit = function() {
-       $scope.stuffs.push({title: 'Hello', content: 'world'});
-    }
-}*/

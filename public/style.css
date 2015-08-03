@@ -1,3 +1,27 @@
+.gallery{
+    text-align: right;
+}
+.title{
+    color: white;
+    font-size: xx-large;
+    background: grey;
+    display: none;
+    height: 40px;
+}
+.presentation{
+    width: 600px;
+    height: 400px;
+    background: white;
+    margin:10px auto ;
+}
+.presentation:hover{
+    opacity: 0.5;
+
+}
+.presentation:hover .title{
+    display:block;
+    color: white;
+}
 .abstract{
     background-image:url(img/abstract.jpg) ;
 }
@@ -6,6 +30,7 @@ a{
 }
 a:hover{
     color: grey;
+    text-decoration: none;
 }
 .form{
     background: #474747;
@@ -125,11 +150,11 @@ opacity: 0.5;
     height: 100%;
     background: #474747;
 }
-.presentation{
+/*.presentation{
     margin-top: 20px;
     background: black;
     height: 110px;
-}
+}*/
 .tool{
     text-align: center;
     width: 96px;
@@ -203,9 +228,6 @@ opacity: 0.5;
     background: white;
     margin:10px;
 }
-
-
-
 
 
 .angular-dnd-resizable-handle {

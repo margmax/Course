@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="row2 col-md-2 tools " >
-                <div class="tool" style="background: red" ng-file-select ng-multiple="true" title="upload" resetOnClick="true" ng-model="files">
+                <div class="tool" ng-file-select ng-multiple="true" title="upload" resetOnClick="true" ng-model="files">
                     <span class="glyphicon glyphicon-picture tl" aria-hidden="true"></span>
                     Image
                 </div>
@@ -30,7 +30,7 @@
                     <span class="glyphicon glyphicon-film tl" aria-hidden="true"></span>
                     Video
                 </div>
-                <div class="tool">
+                <div class="tool" ng-click="submitText()">
                     <span class="glyphicon glyphicon-font tl" aria-hidden="true"></span>
                     <br>
                       Text
@@ -82,6 +82,15 @@
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
                                         style={{ellipse.style}}></div>
+                            </div>
+                            <div ng-repeat="text in texts">
+                                <div dnd-draggable="true" class="draggable"
+                                     dnd-containment="'.slide'"
+                                     dnd-rotatable = "true"
+                                     dnd-resizable = "true"
+                                     dnd-on-dragend="">
+                                    <textarea rows="1" width="100%" height="100%"></textarea>
+                                </div>
                             </div>
                         </div>
                 </div>

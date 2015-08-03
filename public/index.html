@@ -23,6 +23,33 @@
   <script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="config.js"></script>
 	<script type="text/javascript" src="controllers/controllers.js"></script>
+
+
+
+    <link rel="stylesheet" type="text/css" href="jqcloud/jqcloud.css"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+    <script type="text/javascript" src="jqcloud/jqcloud-1.0.4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css"/>
+    <script type="text/javascript">
+        var word_list = [];
+        var words=['dfg','ertghy','wertghyj','dfdgh','erf'];
+        for(var i=0;i<words.length;i++){
+            var tag={};
+            tag.text=words[i];
+            tag.weight=5+0.5*i;
+            word_list.push(tag);
+        }
+        console.log(word_list);
+
+        $(function () {
+            $("#cloud").jQCloud(word_list);
+        });
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 	<div ui-view></div>
