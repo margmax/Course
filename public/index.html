@@ -1,41 +1,30 @@
 <!DOCTYPE html>
 <html ng-app="CourseApp">
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-  <link rel="stylesheet" type="text/css" href="bower_components/jqcloud/jqcloud.css"/>
-  <link rel="stylesheet" href="style.css"/>
-
-	<script type="text/javascript" src="bower_components/angularjs/angular.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
-	<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-  
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <script src="./bower_components/cloudinary_js/js/jquery.cloudinary.js"></script>
-  <script src="./bower_components/ng-file-upload/angular-file-upload-shim.min.js"></script>
-  <script src="./bower_components/cloudinary_ng/js/angular.cloudinary.js"></script>
-  <script src="./bower_components/ng-file-upload/angular-file-upload.min.js"></script> 
-  <script type="text/javascript" src="bower_components/jqcloud/jqcloud-1.0.4.min.js"></script>
-  
-
-
-  <script src="http://code.interactjs.io/interact-1.2.4.min.js"></script>
-  <script type="text/javascript" src="bower_components/angular-dnd/dist/angular-dnd.min.js"></script>
-  <script type="text/javascript" src="app.js"></script>
-	<script type="text/javascript" src="config.js"></script>
-	<script type="text/javascript" src="controllers/controllers.js"></script>
-  
-
-
-
-    
-
-
-</head>
-<body>
-	<div ui-view>
-             <script type="text/javascript">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="bower_components/jqcloud/jqcloud.css"/>
+    <link rel="stylesheet" href="style.css"/>
+    <script type="text/javascript" src="bower_components/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="./bower_components/cloudinary_js/js/jquery.cloudinary.js"></script>
+    <script src="./bower_components/ng-file-upload/angular-file-upload-shim.min.js"></script>
+    <script src="./bower_components/cloudinary_ng/js/angular.cloudinary.js"></script>
+    <script src="./bower_components/ng-file-upload/angular-file-upload.min.js"></script>
+    <script type="text/javascript" src="bower_components/jqcloud/jqcloud-1.0.4.min.js"></script>
+    <script src="http://code.interactjs.io/interact-1.2.4.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-dnd/dist/angular-dnd.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="config.js"></script>
+    <script type="text/javascript" src="controllers/controllers.js"></script>
+    <link rel="stylesheet" type="text/css" href="jqcloud/jqcloud.css"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+    <script type="text/javascript" src="jqcloud/jqcloud-1.0.4.min.js"></script>
+    <script type="text/javascript" src="jscolor/jscolor.js"></script>
+    <script type="text/javascript">
         var word_list = [];
         var words=['dfg','ertghy','wertghyj','dfdgh','erf'];
         for(var i=0;i<words.length;i++){
@@ -44,12 +33,14 @@
             tag.weight=5+0.5*i;
             word_list.push(tag);
         }
-        console.log(word_list);
-
         $(function () {
-            $("#cloud").jQCloud(word_list);
+            $("#example").jQCloud(word_list);
         });
-    </script> 
+    </script>
+
+</head>
+<body>
+	<div ui-view>
   </div>
 
 </body>

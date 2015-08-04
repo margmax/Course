@@ -24,10 +24,13 @@ function($scope, $sce, $upload) {
         $scope.texts.push('text');
     }
     $scope.submitSlide = function() {
+        if ($scope.slides.length == 4) {
+            return;
+        }
         $scope.slides.push('slide');
+
     }
     $scope.submitRectangle = function(styleS, boolS) {
-      alert(styleS);
         $scope.rectangles.push({style: styleS, boolShow: boolS});
     }
     $scope.submitEllipse = function(styleS, boolS) {

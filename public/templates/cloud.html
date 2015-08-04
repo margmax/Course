@@ -9,6 +9,7 @@
         </a>
         </div>
         <div id="cloud" style="height: 200px"></div>
+
         <div class="form-group" style="width: 90px;margin: 0 auto;">
             <label for="sel1">Size:</label>
             <select class="form-control" id="sel1">
@@ -19,13 +20,13 @@
 
         <label>Title:</label>
         <br>
-        <input type="text" name="title" id="title" placeholder="Title" required="true" style="color:black"/>
+        <input type="text" name="title" id="title" placeholder="Title" required="true" style="color:black" ng-model="title"/>
         <br>
         <label>Tags:</label>
         <br>
-        <input type="text" name="tags" id="tags" placeholder="Tags" required="true" style="color:black"/>
+        <input type="text" name="tags" id="tags" placeholder="Tags" required="true" style="color:black" ng-model="tags"/>
         <br><br>
-      <button ui-sref="app" type="submit" class="btn btn-default" name="signin" id="signin" style="margin-bottom: 25px;">
+        <button ui-sref="app" type="submit" class="btn btn-default" name="signin" id="signin" style="margin-bottom: 25px;">
             + Create
         </button>
 

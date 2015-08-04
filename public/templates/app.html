@@ -7,7 +7,9 @@
                     <span class="glyphicon glyphicon-eye-open fl" aria-hidden="true" ></span>
                 </div>
                 <div class="file" data-title="Open">
+                    <a ui-sref="gallery">
                     <span class="glyphicon glyphicon-folder-open fl" aria-hidden="true" ></span>
+                    </a>
                 </div>
                 <div class="file" data-title="Save">
                     <span class="glyphicon glyphicon-floppy-save fl" aria-hidden="true" ></span>
@@ -38,7 +40,7 @@
                 <div class="tool" ng-click="submitRectangle('border: 3px solid red', true)">
                     <img src="img/rectangle.png">
                     Rectangle
-                </div>
+                  </div>
                 <div class="tool" ng-click="submitEllipse('border: 3px solid red; border-radius: 50%', true)">
                     <img src="img/ellips.png">
                     Ellipse
@@ -83,7 +85,7 @@
                                         dnd-on-dragend="" 
                                         style={{ellipse.style}}></div>
                             </div>
-                            <div ng-repeat="text in texts">
+                            <div ng-repeat="text in texts track by $index">
                                 <div dnd-draggable="true" class="draggable"
                                      dnd-containment="'.slide'"
                                      dnd-rotatable = "true"
@@ -109,8 +111,8 @@
                         <div  class="ui-widget ui-corner-all ui-state-error minislidePlus" ng-click="submitSlide()"></div>
                         <div ng-repeat="slide in slides track by $index" style="display: inline-block" class="ui-widget ui-corner-all ui-state-error minislide"></div>
                     </span>
-                    <div class="arrow">
-                        <div class="glyphicon glyphicon-menu-right fl" aria-hidden="true"></div>
+                    <div class="arrow" style="position: absolute;margin-left: 870px;">
+                        <span class="glyphicon glyphicon-menu-right fl" aria-hidden="true"></span>
                     </div>
                 </div>
             </div>
