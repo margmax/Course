@@ -2,13 +2,18 @@ var courseAppControllers = angular.module('courseAppControllers', ['ngRoute', 'a
 
 courseAppControllers.controller('appController', ['$scope', '$sce', '$upload',
 function($scope, $sce, $upload) {
-    $scope.rectangles = [];
-    $scope.ellipses = [];
+    $scope.slide = {
+      rectangles: [],
+      ellipses: [],
+      videos: [],
+      images: [],
+      texts: []
+    };
     $scope.slides = [];
-    $scope.videos = [];
-    $scope.images = [];
-    $scope.texts = [];
-    $scope.boolShowVideoFrame = false;
+    $scope.slideIndex = 0;
+    $scope.setSlideIndex = function(index) {
+      $scope.slideIndex = index;
+    }
     $scope.chooseVideo = function() {
       var s = prompt("Enter the link:", '');
       if (s !== '' && s !== null) 
@@ -18,30 +23,30 @@ function($scope, $sce, $upload) {
     $scope.submitVideo = function(linkS, boolS) {
       alert(linkS);
       linkS = $sce.trustAsResourceUrl(linkS);
-      $scope.videos.push({link: linkS, boolShow: boolS});
+      $scope.slides[$scope.slideIndex].videos.push({link: linkS, boolShow: boolS});
     }
     $scope.submitText=function(){
-        $scope.texts.push('text');
+        $scope.slides[$scope.slideIndex].texts.push('text');
     }
     $scope.submitSlide = function() {
-        if ($scope.slides.length == 4) {
-            return;
-        }
-        $scope.slides.push('slide');
+        $scope.slides.push(angular.copy($scope.slide));
 
     }
+    ;(function(){
+      $scope.submitSlide();
+    })();
     $scope.submitRectangle = function(styleS, boolS) {
-        $scope.rectangles.push({style: styleS, boolShow: boolS});
+        $scope.slides[$scope.slideIndex].rectangles.push({style: styleS, boolShow: boolS});
     }
     $scope.submitEllipse = function(styleS, boolS) {
-        $scope.ellipses.push({style: styleS, boolShow: boolS});
+        $scope.slides[$scope.slideIndex].ellipses.push({style: styleS, boolShow: boolS});
     }
     $scope.$watch('files', function() {
       if (!$scope.files) return;
       $scope.files.forEach(function(file){
         $scope.upload = $upload.upload({
-          url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
-          data: {upload_preset: $.cloudinary.config().upload_preset, tags: 'myphotoalbum'},
+          url: "https://api.cloudinary.com/v1_1/" + 'alksnk-max' + "/upload",
+          data: {upload_preset: 'rdlkivg2', tags: 'myphotoalbum'},
           file: file
         }).progress(function (e) {
           file.progress = Math.round((e.loaded * 100.0) / e.total);
@@ -50,7 +55,7 @@ function($scope, $sce, $upload) {
             $scope.$apply();
           }
         }).success(function (data, status, headers, config) {
-          $scope.images.push(data);
+          $scope.slides[$scope.slideIndex].images.push(data);
           if(!$scope.$$phase) {
             $scope.$apply();
           }

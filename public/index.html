@@ -17,9 +17,9 @@
     <script type="text/javascript" src="bower_components/jqcloud/jqcloud-1.0.4.min.js"></script>
     <script src="http://code.interactjs.io/interact-1.2.4.min.js"></script>
     <script type="text/javascript" src="bower_components/angular-dnd/dist/angular-dnd.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="config.js"></script>
     <script type="text/javascript" src="controllers/controllers.js"></script>
+    <script type="text/javascript" src="app.js"></script>
     <link rel="stylesheet" type="text/css" href="jqcloud/jqcloud.css"/>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
     <script type="text/javascript" src="jqcloud/jqcloud-1.0.4.min.js"></script>
@@ -37,11 +37,13 @@
             $("#example").jQCloud(word_list);
         });
     </script>
+    <style type="text/css">
+      textarea {border: none; resize: none}
+    </style>
 
 </head>
 <body>
-	<div ui-view>
-  </div>
+	<div ui-view></div>
 
 </body>
 </html>
