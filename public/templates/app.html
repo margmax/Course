@@ -51,53 +51,56 @@
                         <div class="slide">
                         <fieldset>
                             <div ng-repeat="video in slides[slideIndex].videos">
-                                    <div dnd-draggable="true" class="draggable"
+                                    <div dnd-draggable="true" class="draggable video"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
-                                        dnd-on-dragend="">
+                                        dnd-on-dragend="" 
+                                        style="{{video.style}}">
                                         <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="videos.splice($index,1)"></span>
+                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].videos.splice($index,1)"></span>
                                     </div>
                             </div>
                             <div ng-repeat="image in slides[slideIndex].images">
-                                <div dnd-draggable="true" class="draggable"
+                                <div dnd-draggable="true" class="draggable image"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
-                                        dnd-on-dragend="">
-                                        <img width="100%" height="100%" max-width="100px" max-height="100px" ng-src="{{image.secure_url}}" ng-click="console.log($scope.slides)">
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="images.splice($index,1)"></span>
+                                        dnd-on-dragend="" 
+                                        style="{{image.style}}">
+                                        <img width="100%" height="100%" ng-src="{{image.secure_url}}">
+                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].images.splice($index,1)"></span>
                                 </div>
                             </div>
                             <div ng-repeat="rectangle in slides[slideIndex].rectangles">
-                                    <div dnd-draggable="true" class="draggable"
+                                    <div dnd-draggable="true" class="draggable rectangle"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
                                         style={{rectangle.style}}>
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="rectangles.splice($index,1)"></span>
+                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].rectangles.splice($index,1)"></span>
                                     </div>
                             </div>
                             <div ng-repeat="ellipse in slides[slideIndex].ellipses">
-                                    <div dnd-draggable="true" class="draggable"
+                                    <div dnd-draggable="true" class="draggable ellipse"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
                                         style={{ellipse.style}}>
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="ellipses.splice($index,1)"></span>
+                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].ellipses.splice($index,1)"></span>
                                     </div>
                             </div>
                             <div ng-repeat="text in slides[slideIndex].texts track by $index">
-                                <div dnd-draggable="true" class="draggable"
+                                <div dnd-draggable="true" class="draggable text"
                                      dnd-containment="'.slide'"
                                      dnd-rotatable = "true"
                                      dnd-resizable = "true"
-                                     dnd-on-dragend="">
+                                     dnd-on-dragend="" 
+                                     style="{{text.style}}">
                                     <textarea rows="1" width="100%" height="100%"></textarea>
-                                    <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="texts.splice($index,1)"></span>
+                                    <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].texts.splice($index,1)"></span>
                                 </div>
                             </div>
                         </div>

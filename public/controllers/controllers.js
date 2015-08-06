@@ -12,6 +12,23 @@ function($scope, $sce, $upload) {
     $scope.slides = [];
     $scope.slideIndex = 0;
     $scope.setSlideIndex = function(index) {
+      $('.rectangle').each(function(index, element){
+        $scope.slides[$scope.slideIndex].rectangles[index].style = $(element).attr('style');
+      });
+      $('.ellipse').each(function(index, element){
+        $scope.slides[$scope.slideIndex].ellipses[index].style = $(element).attr('style');
+      });
+      $('.video').each(function(index, element){
+        $scope.slides[$scope.slideIndex].videos[index].style = $(element).attr('style');
+      });
+      $('.text').each(function(index, element){
+        $scope.slides[$scope.slideIndex].texts[index].style = $(element).attr('style');
+      });
+      $('.image').each(function(index, element){
+        $scope.slides[$scope.slideIndex].images[index].style = $(element).attr('style');
+      });
+
+      debugger;
       $scope.slideIndex = index;
     }
     $scope.chooseVideo = function() {
@@ -23,10 +40,10 @@ function($scope, $sce, $upload) {
     $scope.submitVideo = function(linkS, boolS) {
       alert(linkS);
       linkS = $sce.trustAsResourceUrl(linkS);
-      $scope.slides[$scope.slideIndex].videos.push({link: linkS, boolShow: boolS});
+      $scope.slides[$scope.slideIndex].videos.push({link: linkS, boolShow: boolS, style: ""});
     }
     $scope.submitText=function(){
-        $scope.slides[$scope.slideIndex].texts.push('text');
+        $scope.slides[$scope.slideIndex].texts.push({style: ""});
     }
     $scope.submitSlide = function() {
         $scope.slides.push(angular.copy($scope.slide));
