@@ -45,8 +45,9 @@
                     <img src="img/ellips.png">
                     Ellipse
                 </div>
-                <div class="form-group" style="width: 90px;margin: 0 auto;">
-                    <label for="sel1">Size:</label>
+                <div class="form-group" style="width: 90px;margin: 0 auto; color: white;text-align: left;
+                font-size: medium">
+                    <label for="sel1" style="margin-left: 7px;">Size:</label>
                     <select class="form-control" id="sel1" ng-model="size" ng-click="submitSize()">
                         <option value="16">16 x 9</option>
                         <option value="4">4 x 3</option>
@@ -55,7 +56,7 @@
             </div>
 
                 <div class="row2 col-md-9 " >
-                        <div class="slide" id="slide">
+                        <div class="slide" id="slide" ng-show="slides.length">
                         <fieldset>
                             <div ng-repeat="video in slides[slideIndex].videos">
                                     <div dnd-draggable="true" class="draggable video"
@@ -110,7 +111,9 @@
                                     <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].texts.splice($index,1)"></span>
                                 </div>
                             </div>
+                            </fieldset>
                         </div>
+
                 </div>
             </div>
         </div>
@@ -123,10 +126,15 @@
                     <div class="arrow">
                         <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
                     </div>
-                    <span id="sortable" style="position: absolute">
-                        <div  class="ui-widget ui-corner-all ui-state-error minislidePlus" ng-click="submitSlide()"></div>
+                    <span sort id="sortable" style="position: absolute; display: inline-block">
+                        <div  class="ui-widget ui-corner-all ui-state-error glyphicon glyphicon-plus-sign" ng-click="submitSlide()" style="
+                        ">
+                        </div>
                         <div ng-repeat="slide in slides track by $index" style="display: inline-block">
-                            <div class="ui-widget ui-corner-all ui-state-error minislide" ng-click="setSlideIndex($index)"></div>
+                            <div  class="ui-widget ui-corner-all ui-state-error minislide" ng-click="setSlideIndex($index)">
+                                <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides.splice($index,1)"></span>
+
+                            </div>
                         </div>
                     </span>
                     <div class="arrow" style="position: absolute;margin-left: 870px;">

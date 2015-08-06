@@ -39,6 +39,18 @@ CourseApp.directive("cloud", function(){
     }
 })
 
+CourseApp.directive("sort",function(){
+    return{
+        link: function(scope,element,attrs){
+            console.log("sdfgcvh");
+            $(element).sortable({
+                revert: true,
+                containment: "parent"
+            });
+        }
+    }
+})
+
 CourseApp.config(['$stateProvider', '$urlRouterProvider',
  function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/cloud");
