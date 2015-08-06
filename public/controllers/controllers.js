@@ -9,6 +9,7 @@ function($scope, $sce, $upload) {
       images: [],
       texts: []
     };
+    $scope.size=16;
     $scope.slides = [];
     $scope.slideIndex = 0;
     $scope.setSlideIndex = function(index) {
@@ -28,15 +29,31 @@ function($scope, $sce, $upload) {
         $scope.slides[$scope.slideIndex].images[index].style = $(element).attr('style');
       });
 
-      debugger;
       $scope.slideIndex = index;
     }
+
+    $scope.submitSize=function(){
+        s=$scope.size;
+        console.log(s);
+        if(s==16){
+            m=1.7;
+        }
+        if(s==4) {
+            m=1.34;
+        }
+        var elem = document.getElementById("slide");
+        var theCSSprop = window.getComputedStyle(elem,null).getPropertyValue("height");
+        var h=parseInt(theCSSprop)*m;
+        document.getElementById('slide').style.width = h +'px';
+    }
+
     $scope.chooseVideo = function() {
       var s = prompt("Enter the link:", '');
       if (s !== '' && s !== null) 
         $scope.submitVideo(s.replace('https://youtu.be/', 'http://www.youtube.com/embed/'), true);
       return;
     }
+
     $scope.submitVideo = function(linkS, boolS) {
       alert(linkS);
       linkS = $sce.trustAsResourceUrl(linkS);

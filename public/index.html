@@ -23,20 +23,6 @@
     <link rel="stylesheet" type="text/css" href="jqcloud/jqcloud.css"/>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
     <script type="text/javascript" src="jqcloud/jqcloud-1.0.4.min.js"></script>
-    <script type="text/javascript" src="jscolor/jscolor.js"></script>
-    <script type="text/javascript">
-        var word_list = [];
-        var words=['dfg','ertghy','wertghyj','dfdgh','erf'];
-        for(var i=0;i<words.length;i++){
-            var tag={};
-            tag.text=words[i];
-            tag.weight=5+0.5*i;
-            word_list.push(tag);
-        }
-        $(function () {
-            $("#example").jQCloud(word_list);
-        });
-    </script>
     <style type="text/css">
       textarea {border: none; resize: none}
     </style>

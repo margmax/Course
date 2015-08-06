@@ -45,10 +45,17 @@
                     <img src="img/ellips.png">
                     Ellipse
                 </div>
+                <div class="form-group" style="width: 90px;margin: 0 auto;">
+                    <label for="sel1">Size:</label>
+                    <select class="form-control" id="sel1" ng-model="size" ng-click="submitSize()">
+                        <option value="16">16 x 9</option>
+                        <option value="4">4 x 3</option>
+                    </select>
+                </div>
             </div>
 
                 <div class="row2 col-md-9 " >
-                        <div class="slide">
+                        <div class="slide" id="slide">
                         <fieldset>
                             <div ng-repeat="video in slides[slideIndex].videos">
                                     <div dnd-draggable="true" class="draggable video"
