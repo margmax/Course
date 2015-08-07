@@ -39,6 +39,7 @@
 .mbutton:hover {
     opacity: 0.5;
 }
+textarea {border: none; resize: none}
 
 .glyphicon-plus-sign{
     font-size: 50px;
@@ -53,6 +54,9 @@
     background: grey;
     display: none;
     height: 40px;
+}
+.gotocloud{
+    color:white; padding: 20px;font-size:xx-large;opacity: 0.7; top:20;
 }
 .presentation{
     width: 600px;

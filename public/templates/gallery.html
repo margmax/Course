@@ -3,12 +3,7 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-10 form" >
 
-        <input class="color" id="bg-color" type="color" value=""
-               onchange="document.getElementById('button').style.backgroundColor = '#'+this.color" />
-        <input type="button" value="4000" id="button" />
-
-
-        <h2> My presentations</h2>
+        <h2 style="color: white;"> My presentations</h2>
         <hr>
        <div class="presentation">
             <div class="title">Nature</div>
@@ -20,7 +15,7 @@
             <div class="firstside"></div>
         </div>
 
-        <a ui-sref="cloud" style="color:white; padding: 20px;font-size:xx-large;opacity: 0.7; top:20 ">
+        <a ui-sref="cloud" id="gotocloud" >
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="bottom: 10px;"></span>
         </a>
 
