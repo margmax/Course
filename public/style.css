@@ -82,7 +82,6 @@ a:hover{
     background: #474747;
     text-align: center;
     border-radius: 10px;
-    color: white;
 }
 .form>input[type="text"] {
     border-radius: 5px;
@@ -233,8 +232,8 @@ opacity: 0.5;
     background: #474747;
 }
 .slide{
-    width:95%;
-    height: 95%;
+    width:500px;
+    height: 400px;
     background: white;
     margin: 10px;
     z-index: 3;
@@ -253,10 +252,15 @@ opacity: 0.5;
     border: none;
     width: 60px;
 }
+#minislide {
+    margin-left: -175px;
+    margin-top: -150px;
+}
+
 .minislide{
     display: inline-block;
-    width:150px;
-    height:100px;
+    width:150px !important;
+    height:100px !important;
     background: white;
     margin:10px;
 }
