@@ -22,6 +22,16 @@
                         <span class="glyphicon glyphicon-log-out fl" aria-hidden="true" ></span>
                     </a>
                 </div>
+                <button colorpicker type="button" class="mbutton" colorpicker-position="top" ng-model="color">Color</button>
+                <div class="form-group" style="width: 90px;margin: 0 auto; color: white;text-align: left;
+                font-size: medium">
+                    <label for="sel1" style="margin-left: 7px;">Position:</label>
+                    <select class="form-control" id="sel2" ng-model="position">
+                        <option value="10">Top</option>
+                        <option value="3">Bottom</option>
+                    </select>
+                </div>
+
             </div>
             <div class="row2 col-md-2 tools " >
                 <div class="tool" ng-file-select ng-multiple="true" title="upload" resetOnClick="true" ng-model="files">
@@ -37,24 +47,16 @@
                     <br>
                       Text
                 </div>
-                <div class="tool" ng-click="submitRectangle('border: 3px solid red', true)">
+                <div class="tool" ng-click="submitRectangle('border: 1px solid black', true)">
                     <img src="img/rectangle.png">
                     Rectangle
                   </div>
-                <div class="tool" ng-click="submitEllipse('border: 3px solid red; border-radius: 50%', true)">
+                <div class="tool" ng-click="submitEllipse('border: 1px solid black; border-radius: 50%', true)">
                     <img src="img/ellips.png">
                     Ellipse
                 </div>
-                <div class="form-group" style="width: 90px;margin: 0 auto; color: white;text-align: left;
-                font-size: medium">
-                    <label for="sel1" style="margin-left: 7px;">Size:</label>
-                    <select class="form-control" id="sel1" ng-model="size" ng-click="submitSize()">
-                        <option value="16">16 x 9</option>
-                        <option value="4">4 x 3</option>
-                    </select>
-                </div>
-            </div>
 
+            </div>
                 <div class="row2 col-md-9 " >
                         <div class="slide" id="slide" ng-show="slides.length">
                         <fieldset>
@@ -80,13 +82,14 @@
                                         <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].images.splice($index,1)"></span>
                                 </div>
                             </div>
-                            <div ng-repeat="rectangle in slides[slideIndex].rectangles">
+                            <div ng-repeat="rectangle in slides[slideIndex].rectangles"  >
                                     <div dnd-draggable="true" class="draggable rectangle"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
-                                        style={{rectangle.style}}>
+                                        style="{{rectangle.style}}" ng-style="rectStyle"
+                                         ng-dblclick="rectStyle={background: color, border:color}">
                                         <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].rectangles.splice($index,1)"></span>
                                     </div>
                             </div>
@@ -96,7 +99,8 @@
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
-                                        style={{ellipse.style}}>
+                                        style={{ellipse.style}} ng-style="rectStyle"
+                                         ng-dblclick="rectStyle={background: color, border:color}">
                                         <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].ellipses.splice($index,1)"></span>
                                     </div>
                             </div>
@@ -121,22 +125,32 @@
         <div class="row">
             <div class="menuslides">
                 <div class="row1 col-md-1"></div>
-                <div class="row1 col-md-2 menu"></div>
-                <div class="row1 col-md-9">
+                <div class="row1 col-md-2 menu" style="text-align: center">
+                    <div class="form-group" style="width: 90px;margin: 0 auto; color: white;text-align: left;
+                font-size: medium">
+                        <label for="sel1" style="margin-left: 7px;">Size:</label>
+                        <select class="form-control" id="sel1" ng-model="size" ng-click="submitSize()">
+                            <option value="16">16 x 9</option>
+                            <option value="4">4 x 3</option>
+                        </select>
+                    </div>
+                    <div  class="ui-widget ui-corner-all ui-state-error glyphicon glyphicon-plus-sign"
+                          style="margin-top: 10px" ng-click="submitSlide()">
+                    </div>
+                </div>
+                <div class="row1 col-md-9" style="background: blue">
                     <div class="arrow">
                         <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
                     </div>
-                    <span sort id="sortable" style="position: absolute; display: inline-block">
-                        <div  class="ui-widget ui-corner-all ui-state-error glyphicon glyphicon-plus-sign" ng-click="submitSlide()" style="
-                        ">
-                        </div>
-                        <div ng-repeat="slide in slides track by $index" style="display: inline-block">
+
+                    <div sort style="position: absolute; background: red;height: 120px; display: inline-block">
+                        <div ng-repeat="slide in slides track by $index" ng-if="$index < 5" style="display: inline-block">
                             <div  class="ui-widget ui-corner-all ui-state-error minislide" ng-click="setSlideIndex($index)">
                                 <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides.splice($index,1)"></span>
 
                             </div>
                         </div>
-                    </span>
+                    </div>
                     <div class="arrow" style="position: absolute;margin-left: 870px;">
                         <span class="glyphicon glyphicon-menu-right fl" aria-hidden="true"></span>
                     </div>

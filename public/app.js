@@ -2,7 +2,8 @@ var CourseApp = angular.module('CourseApp', [
   'ui.router',
   'courseAppControllers',
   'dnd',
-  'cloudinary'
+  'cloudinary',
+    'colorpicker.module'
   ]);
 
 CourseApp.factory("sizeContainer", function(){
@@ -39,12 +40,19 @@ CourseApp.directive("cloud", function(){
     }
 })
 
+//CourseApp.directive("color",function(){
+//    return{
+//        link: function(scope,element,attrs){
+//            $(element).css('background-color','#dddddd');
+//        }
+//    }
+//})
+
 CourseApp.directive("sort",function(){
     return{
         link: function(scope,element,attrs){
-            console.log("sdfgcvh");
             $(element).sortable({
-                revert: true,
+                axis: "x",
                 containment: "parent"
             });
         }

@@ -1,4 +1,4 @@
-var courseAppControllers = angular.module('courseAppControllers', ['ngRoute', 'angularFileUpload']);
+var courseAppControllers = angular.module('courseAppControllers', ['ngRoute', 'angularFileUpload','colorpicker.module']);
 
 courseAppControllers.controller('appController', ['$scope', '$sce', '$upload',
 function($scope, $sce, $upload) {
@@ -34,7 +34,6 @@ function($scope, $sce, $upload) {
 
     $scope.submitSize=function(){
         s=$scope.size;
-        console.log(s);
         if(s==16){
             m=1.7;
         }
@@ -64,13 +63,11 @@ function($scope, $sce, $upload) {
     }
     $scope.submitSlide = function() {
         $scope.slides.push(angular.copy($scope.slide));
-
     }
-    ;(function(){
-      $scope.submitSlide();
-    })();
+
     $scope.submitRectangle = function(styleS, boolS) {
         $scope.slides[$scope.slideIndex].rectangles.push({style: styleS, boolShow: boolS});
+        console.log($scope.color);
     }
     $scope.submitEllipse = function(styleS, boolS) {
         $scope.slides[$scope.slideIndex].ellipses.push({style: styleS, boolShow: boolS});
