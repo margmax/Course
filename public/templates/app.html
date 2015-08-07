@@ -66,7 +66,12 @@
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
-                                        style="{{video.style}}">
+                                        style="{{video.style}}" ng-style="selectStyle"
+                                         ng-dblclick="showMenuVid()">
+                                        <div id="menuVid" style="  display: none;">
+                                            <div ng-click="selectStyle={zIndex:'50'}" class="elem">Top</div>
+                                            <div class="elemls">Bottom</div>
+                                        </div>>
                                         <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
                                         <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].videos.splice($index,1)"></span>
                                     </div>
@@ -77,7 +82,12 @@
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
-                                        style="{{image.style}}">
+                                        style="{{image.style}}" ng-style="selectStyle"
+                                        ng-dblclick="showMenuImg()">
+                                        <div id="menuImg" style="  display: none;">
+                                            <div ng-click="selectStyle={zIndex:'50'}" class="elem">Top</div>
+                                            <div class="elemls">Bottom</div>
+                                        </div>
                                         <img width="100%" height="100%" ng-src="{{image.secure_url}}">
                                         <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].images.splice($index,1)"></span>
                                 </div>
@@ -89,7 +99,12 @@
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
                                         style="{{rectangle.style}}" ng-style="rectStyle"
-                                         ng-dblclick="rectStyle={background: color, border:color}">
+                                         ng-dblclick="showMenuRec()">
+                                        <div id="menuRec" style="  display: none;">
+                                            <div class="elem" ng-click="rectStyle={background: color, border:color}">Color</div>
+                                            <div class="elem" ng-click="rectStyle={background: color, border:color,zIndex:'50'}">Top</div>
+                                            <div class="elemls" ng-click="rectStyle={background: color, border:color,zIndex:'1'}">Bottom</div>
+                                        </div>
                                         <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].rectangles.splice($index,1)"></span>
                                     </div>
                             </div>
@@ -100,7 +115,12 @@
                                         dnd-resizable = "true"
                                         dnd-on-dragend="" 
                                         style={{ellipse.style}} ng-style="rectStyle"
-                                         ng-dblclick="rectStyle={background: color, border:color}">
+                                         ng-dblclick="showMenuEll()">
+                                        <div id="menuEll" style="  display: none;">
+                                            <div class="elem" ng-click="rectStyle={background: color, border:color}">Color</div>
+                                            <div class="elem" ng-click="rectStyle={background: color, border:color,zIndex:'50'}">Top</div>
+                                            <div class="elemls" ng-click="rectStyle={background: color, border:color,zIndex:'1'}">Bottom</div>
+                                        </div>
                                         <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].ellipses.splice($index,1)"></span>
                                     </div>
                             </div>
@@ -110,9 +130,14 @@
                                      dnd-rotatable = "true"
                                      dnd-resizable = "true"
                                      dnd-on-dragend="" 
-                                     style="{{text.style}}">
+                                     style="{{text.style}}" ng-style="selectStyle"
+                                     ng-dblclick="showMenuTex()">
+                                    <div id="menuTex" style="  display: none;">
+                                        <div ng-click="selectStyle={zIndex:'50'}" class="elem">Top</div>
+                                        <div class="elemls">Bottom</div>
+                                    </div>
                                     <textarea rows="1" width="100%" height="100%"></textarea>
-                                    <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].texts.splice($index,1)"></span>
+                                    <span class="glyphicon glyphicon-remove-sign" style="top: -16px; " ng-click="slides[slideIndex].texts.splice($index,1)"></span>
                                 </div>
                             </div>
                             </fieldset>

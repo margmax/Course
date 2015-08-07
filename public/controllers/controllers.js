@@ -53,6 +53,56 @@ function($scope, $sce, $upload) {
       return;
     }
 
+    $scope.showMenuVid=function(){
+        console.log("yea");
+        display = document.getElementById("menuVid").style.display;
+        if(display=='none'){
+            document.getElementById("menuVid").style.display='block';
+        }else{
+            document.getElementById("menuVid").style.display='none';
+        }
+    }
+
+    $scope.showMenuTex=function(){
+        console.log("yea");
+        display = document.getElementById("menuTex").style.display;
+        if(display=='none'){
+            document.getElementById("menuTex").style.display='block';
+        }else{
+            document.getElementById("menuTex").style.display='none';
+        }
+    }
+
+    $scope.showMenuImg=function(){
+        console.log("yea");
+        display = document.getElementById("menuImg").style.display;
+        if(display=='none'){
+            document.getElementById("menuImg").style.display='block';
+        }else{
+            document.getElementById("menuImg").style.display='none';
+        }
+    }
+
+    $scope.showMenuRec=function(){
+        console.log("yea");
+        display = document.getElementById("menuRec").style.display;
+        if(display=='none'){
+            document.getElementById("menuRec").style.display='block';
+        }else{
+            document.getElementById("menuRec").style.display='none';
+        }
+    }
+
+    $scope.showMenuEll=function(){
+        console.log("yea");
+        display = document.getElementById("menuEll").style.display;
+        if(display=='none'){
+            document.getElementById("menuEll").style.display='block';
+        }else{
+            document.getElementById("menuEll").style.display='none';
+        }
+    }
+
     $scope.submitVideo = function(linkS, boolS) {
       alert(linkS);
       linkS = $sce.trustAsResourceUrl(linkS);

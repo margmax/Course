@@ -17,36 +17,19 @@ CourseApp.factory("sizeContainer", function(){
             return variable;
         }
     }
-})
+});
 
-CourseApp.directive("cloud", function(){
-    return {
-        scope: {
-            a: "="
-        },
-        link: function(scope, element, attrs){
-            var word_list = [];
-            var words=['dfg','ertghy','wertghyj','dfdgh','erf'];
-            for(var i=0;i<words.length;i++){
-                var tag={};
-                tag.text=words[i];
-                tag.weight=5+0.5*i;
-                word_list.push(tag);
-            }
-            $(function () {
-                $(element).jQCloud(word_list);
+CourseApp.directive('ngRightClick', function($parse) {
+    return function(scope, element, attrs) {
+        var fn = $parse(attrs.ngRightClick);
+        element.bind('contextmenu', function(event) {
+            scope.$apply(function() {
+                event.preventDefault();
+                fn(scope, {$event:event});
             });
-        }
-    }
-})
-
-//CourseApp.directive("color",function(){
-//    return{
-//        link: function(scope,element,attrs){
-//            $(element).css('background-color','#dddddd');
-//        }
-//    }
-//})
+        });
+    };
+});
 
 CourseApp.directive("sort",function(){
     return{
