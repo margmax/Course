@@ -1,8 +1,8 @@
 var CourseApp = angular.module('CourseApp', [
-  'ui.router',
-  'courseAppControllers',
-  'dnd',
-  'cloudinary',
+    'ui.router',
+    'courseAppControllers',
+    'dnd',
+    'cloudinary',
     'colorpicker.module'
   ]);
 
@@ -61,6 +61,11 @@ CourseApp.config(['$stateProvider', '$urlRouterProvider',
              url: "/gallery",
              templateUrl: "templates/gallery.html",
              controller: "appController"
-         });
+         })
+         /*.state('fullscreen', {
+             url: "/fullscreen",
+             templateUrl: "templates/cloud.html",
+             controller: "appController"
+         })*/;
 
 }]);

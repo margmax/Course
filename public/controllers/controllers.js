@@ -1,7 +1,7 @@
 var courseAppControllers = angular.module('courseAppControllers', ['ngRoute', 'angularFileUpload','colorpicker.module']);
 
-courseAppControllers.controller('appController', ['$scope', '$sce', '$upload',
-function($scope, $sce, $upload) {
+courseAppControllers.controller('appController', ['$scope', '$sce', '$upload', '$http',
+function($scope, $sce, $upload, $http) {
     $scope.slide = {
       rectangles: [],
       ellipses: [],
@@ -12,6 +12,8 @@ function($scope, $sce, $upload) {
     $scope.size=16;
     $scope.slides = [];
     $scope.slideIndex = 0;
+    $scope.showSlideIndex = 0;
+
     $scope.setSlideIndex = function(index) {
       $('.rectangle').each(function(index, element){
         $scope.slides[$scope.slideIndex].rectangles[index].style = $(element).attr('style');
@@ -30,6 +32,14 @@ function($scope, $sce, $upload) {
       });
 
       $scope.slideIndex = index;
+    }
+
+    $scope.changeShowSlideIndex = function(direction) {
+      if (direction) {
+        $scope.showSlideIndex++;
+        return;
+      }
+      $scope.showSlideIndex--;
     }
 
     $scope.submitSize=function(){
@@ -104,7 +114,6 @@ function($scope, $sce, $upload) {
     }
 
     $scope.submitVideo = function(linkS, boolS) {
-      alert(linkS);
       linkS = $sce.trustAsResourceUrl(linkS);
       $scope.slides[$scope.slideIndex].videos.push({link: linkS, boolShow: boolS, style: ""});
     }
@@ -117,7 +126,6 @@ function($scope, $sce, $upload) {
 
     $scope.submitRectangle = function(styleS, boolS) {
         $scope.slides[$scope.slideIndex].rectangles.push({style: styleS, boolShow: boolS});
-        console.log($scope.color);
     }
     $scope.submitEllipse = function(styleS, boolS) {
         $scope.slides[$scope.slideIndex].ellipses.push({style: styleS, boolShow: boolS});
@@ -143,5 +151,25 @@ function($scope, $sce, $upload) {
         });
       });
     });
+
+
+    $scope.saveSlides = function() {
+      $http.post('/userData', $scope.slides);
+    }
+    $scope.load = function() {
+      $http.get('/userData').success(function(res) {
+        $scope.slides = JSON.parse(res.data);
+      });
+    }
+    
+
+    $scope.show = function() {
+      console.log($scope.slides.length);
+    }
 }]);
+
+
+
+
+
 

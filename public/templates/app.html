@@ -4,17 +4,17 @@
             <div class="toolsandslide">
             <div class="row2 col-md-1">
                 <div class="file" data-title="View">
-                    <span class="glyphicon glyphicon-eye-open fl" aria-hidden="true" ></span>
+                    <span class="glyphicon glyphicon-eye-open fl" aria-hidden="true" ng-click="load()"></span>
                 </div>
                 <div class="file" data-title="Open">
                     <a ui-sref="gallery">
                     <span class="glyphicon glyphicon-folder-open fl" aria-hidden="true" ></span>
                     </a>
                 </div>
-                <div class="file" data-title="Save">
+                <div class="file" data-title="Save" ng-click="saveSlides()">
                     <span class="glyphicon glyphicon-floppy-save fl" aria-hidden="true" ></span>
                 </div>
-                <div class="file" data-title="Delete">
+                <div class="file" data-title="Delete" ng-click="show()">
                     <span class="glyphicon glyphicon-trash fl" aria-hidden="true" ></span>
                 </div>
                 <div class="file" data-title="Log out">
@@ -157,12 +157,12 @@
                     </div>
                 </div>
                 <div class="row1 col-md-9" style="background: blue">
-                    <div class="arrow">
+                    <div class="arrow" ng-click="changeShowSlideIndex(false)">
                         <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
                     </div>
 
                     <div sort style="position: absolute; background: red;height: 120px; display: inline-block">
-                        <div ng-repeat="slide in slides track by $index" ng-if="$index < 5" style="display: inline-block">
+                        <div ng-repeat="slide in slides track by $index" ng-if="$index < showSlideIndex+5 && $index >= showSlideIndex" style="display: inline-block">
                             <div  class="ui-widget ui-corner-all ui-state-error0 minislide">
                                 <div class="slide" id="minislide" style="transform: scale(0.3,0.25)" ng-click="setSlideIndex($index)">
                                 <div ng-repeat="video in slides[$index].videos">
@@ -225,7 +225,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="arrow" style="position: absolute;margin-left: 870px;">
+                    <div class="arrow" style="position: absolute;margin-left: 870px;" ng-click="changeShowSlideIndex(true)">
                         <span class="glyphicon glyphicon-menu-right fl" aria-hidden="true"></span>
                     </div>
                 </div>

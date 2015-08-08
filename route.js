@@ -6,6 +6,8 @@ var bcrypt = require('bcrypt-nodejs');
 // model
 var Model = require('./model');
 
+var USERNAME = null;
+
 // index
 var index = function(req, res, next) {
    console.log(req.isAuthenticated());
@@ -25,13 +27,21 @@ var index = function(req, res, next) {
 // sign in
 // GET
 var signIn = function(req, res, next) {
-   if(req.isAuthenticated()) res.redirect('/');
+   if(req.isAuthenticated()){
+      res.redirect('/');
+   }
+   /*var user = req.body;
+   USERNAME = user.username;
+   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      "+req.body);*/
    res.sendfile('./public/signin.html');
 };
 
 // sign in
 // POST
 var signInPost = function(req, res, next) {
+   var user = req.body;
+   USERNAME = user.username;
+   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!     "+USERNAME);
    passport.authenticate('local', { successRedirect: '/',
                           failureRedirect: '/signin'}, function(err, user, info) {
       if(err) {
@@ -66,11 +76,12 @@ var signUp = function(req, res, next) {
 var signUpPost = function(req, res, next) {
    var user = req.body;
    var usernamePromise = null;
+   console.log(user.username);
    usernamePromise = new Model.User({username: user.username}).fetch();
    return usernamePromise.then(function(model) {
       if(model) {
-      	console.log(model);
-         res.redirect('signup');
+         console.log(model);
+         res.redirect('/signup');
       } else {
          //****************************************************//
          // MORE VALIDATION GOES HERE(E.G. PASSWORD VALIDATION)
@@ -83,7 +94,7 @@ var signUpPost = function(req, res, next) {
          signUpUser.save().then(function(model) {
             // sign in the newly registered user
             signInPost(req, res, next);
-         });	
+         });   
       }
    });
 };
@@ -98,6 +109,21 @@ var signOut = function(req, res, next) {
    }
 };
 
+var getUserData = function(req, res) {
+   res.send(req.user);
+};
+
+var updateUserData = function(req, res) {
+   var data = JSON.stringify(req.body);
+   console.log(req.body);
+   var presentation = new Model.User({username: USERNAME});
+   presentation.fetch().then(function(model) { 
+      model.save({data: data}, {patch: true}).then(function() {
+         res.end();
+      });
+   });
+}
+
 // 404 not found
 var notFound404 = function(req, res, next) {
    res.status(404);
@@ -108,6 +134,10 @@ var notFound404 = function(req, res, next) {
 /**************************************/
 // index
 module.exports.index = index;
+
+module.exports.getUserData = getUserData;
+
+module.exports.updateUserData = updateUserData;
 
 // sigin in
 // GET

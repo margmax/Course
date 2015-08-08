@@ -55,6 +55,14 @@ app.use(passport.session());
 // GET
 app.get('/', route.index);
 
+app.get('/userData', route.getUserData);
+
+//app.put('/userData', route.createUserData)
+
+app.post('/userData', route.updateUserData)
+
+//app.delete('/userData', route.deleteUserData)
+
 // signin
 // GET
 app.get('/signin', route.signIn);

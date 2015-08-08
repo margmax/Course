@@ -1,13 +1,14 @@
-drop database if exists dbUsers;
+drop database if exists ipresentation;
 
-create database if not exists dbUsers;
+create database if not exists ipresentation;
 
-use dbUsers;
+use ipresentation;
 
-drop table if exists tblUsers;
+drop table if exists users;
 
-create table if not exists tblUsers(
-   userId integer primary key auto_increment,
+create table if not exists users(
+   user_id integer primary key auto_increment,
    username varchar(100) unique,
-   password varchar(100)
+   password varchar(100),
+   data text
 )engine=innodb;
