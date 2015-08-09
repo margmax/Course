@@ -1,5 +1,33 @@
 <div class="fotorama"
      data-allowfullscreen="native">
-  <img src="1.jpg">
-  <img src="2.jpg">
+    <div ng-repeat="slide in slides">
+  		<div ng-repeat="video in slide.videos">
+            <div class="draggable" 
+                                            style="{{video.style}}">
+                                            <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="image in slide.images">
+                                        <div class="draggable"
+                                            style="{{image.style}}">
+                                            <img width="100%" height="100%" ng-src="{{image.secure_url}}">
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="rectangle in slide.rectangles"  >
+                                        <div class="draggable"
+                                            style="{{rectangle.style}}" ng-style="rectStyle">
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="ellipse in slide.ellipses">
+                                        <div class="draggable"
+                                            style={{ellipse.style}} ng-style="rectStyle">
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="text in slide.texts track by $index">
+                                        <div class="draggable"
+                                             style="{{text.style}}">
+                                            <textarea rows="1" width="100%" height="100%"></textarea>
+                                        </div>
+                                    </div>
+    </div>
 </div>

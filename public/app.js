@@ -44,7 +44,7 @@ CourseApp.directive("sort",function(){
 
 CourseApp.config(['$stateProvider', '$urlRouterProvider',
  function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise("/cloud");
+  $urlRouterProvider.otherwise("/gallery");
 
   $stateProvider
          .state('app', {
@@ -62,10 +62,10 @@ CourseApp.config(['$stateProvider', '$urlRouterProvider',
              templateUrl: "templates/gallery.html",
              controller: "appController"
          })
-         /*.state('fullscreen', {
+         .state('fullscreen', {
              url: "/fullscreen",
-             templateUrl: "templates/cloud.html",
+             templateUrl: "templates/fullscreen.html",
              controller: "appController"
-         })*/;
+         });
 
 }]);

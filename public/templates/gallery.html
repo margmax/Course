@@ -5,16 +5,94 @@
 
         <h2 style="color: white;"> My presentations</h2>
         <hr>
-       <div class="presentation">
-            <div class="title">Nature</div>
-            <div class="firstside"></div>
-        </div>
-
-        <div class="presentation">
-            <div class="title">Office</div>
-            <div class="firstside"></div>
-        </div>
-
+        <a ng-repeat="(key, value) in presentations">
+            <div class="presentation" ng-click="loadPresentation(key)">
+                <div class="title">{{key}}</div>
+                <div class="firstside">
+                   
+                </div>
+                 <div ng-repeat="video in presentations[key].slides[0].videos">
+                                    <div dnd-draggable="true" class="draggable video"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="" 
+                                        style="{{video.style}}" ng-style="selectStyle"
+                                         ng-dblclick="showMenuVid()">
+                                        <div id="menuVid" style="  display: none;">
+                                            <div ng-click="selectStyle={zIndex:'50'}" class="elem">Top</div>
+                                            <div class="elemls">Bottom</div>
+                                        </div>>
+                                        <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
+                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].videos.splice($index,1)"></span>
+                                    </div>
+                            </div>
+                            <div ng-repeat="image in presentations[key].slides[0].images">
+                                <div dnd-draggable="true" class="draggable image"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="" 
+                                        style="{{image.style}}" ng-style="selectStyle"
+                                        ng-dblclick="showMenuImg()">
+                                        <div id="menuImg" style="  display: none;">
+                                            <div ng-click="selectStyle={zIndex:'50'}" class="elem">Top</div>
+                                            <div class="elemls">Bottom</div>
+                                        </div>
+                                        <img width="100%" height="100%" ng-src="{{image.secure_url}}">
+                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].images.splice($index,1)"></span>
+                                </div>
+                            </div>
+                            <div ng-repeat="rectangle in presentations[key].slides[0].rectangles"  >
+                                    <div dnd-draggable="true" class="draggable rectangle"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="" 
+                                        style="{{rectangle.style}}" ng-style="rectStyle"
+                                         ng-dblclick="showMenuRec()">
+                                        <div id="menuRec" style="  display: none;">
+                                            <div class="elem" ng-click="rectStyle={background: color, border:color}">Color</div>
+                                            <div class="elem" ng-click="rectStyle={background: color, border:color,zIndex:'50'}">Top</div>
+                                            <div class="elemls" ng-click="rectStyle={background: color, border:color,zIndex:'1'}">Bottom</div>
+                                        </div>
+                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].rectangles.splice($index,1)"></span>
+                                    </div>
+                            </div>
+                            <div ng-repeat="ellipse in presentations[key].slides[0].ellipses">
+                                    <div dnd-draggable="true" class="draggable ellipse"
+                                        dnd-containment="'.slide'"
+                                        dnd-rotatable = "true"
+                                        dnd-resizable = "true"
+                                        dnd-on-dragend="" 
+                                        style={{ellipse.style}} ng-style="rectStyle"
+                                         ng-dblclick="showMenuEll()">
+                                        <div id="menuEll" style="  display: none;">
+                                            <div class="elem" ng-click="rectStyle={background: color, border:color}">Color</div>
+                                            <div class="elem" ng-click="rectStyle={background: color, border:color,zIndex:'50'}">Top</div>
+                                            <div class="elemls" ng-click="rectStyle={background: color, border:color,zIndex:'1'}">Bottom</div>
+                                        </div>
+                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].ellipses.splice($index,1)"></span>
+                                    </div>
+                            </div>
+                            <div ng-repeat="text in presentations[key].slides[0].texts track by $index">
+                                <div dnd-draggable="true" class="draggable text"
+                                     dnd-containment="'.slide'"
+                                     dnd-rotatable = "true"
+                                     dnd-resizable = "true"
+                                     dnd-on-dragend="" 
+                                     style="{{text.style}}" ng-style="selectStyle"
+                                     ng-dblclick="showMenuTex()">
+                                    <div id="menuTex" style="  display: none;">
+                                        <div ng-click="selectStyle={zIndex:'50'}" class="elem">Top</div>
+                                        <div class="elemls">Bottom</div>
+                                    </div>
+                                    <textarea rows="1" style="width: 100% height: 100%"></textarea>
+                                    <span class="glyphicon glyphicon-remove-sign" style="top: -16px; " ng-click="slides[slideIndex].texts.splice($index,1)"></span>
+                                </div>
+                            </div>
+            </div>
+        </a>
         <a ui-sref="cloud" id="gotocloud" >
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="bottom: 10px;"></span>
         </a>

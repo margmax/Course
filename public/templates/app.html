@@ -1,20 +1,20 @@
-<div ng-controller="appController">
+<div>
    <div class="container" >
         <div class="row">
             <div class="toolsandslide">
             <div class="row2 col-md-1">
                 <div class="file" data-title="View">
-                    <span class="glyphicon glyphicon-eye-open fl" aria-hidden="true" ng-click="load()"></span>
+                    <span class="glyphicon glyphicon-eye-open fl" aria-hidden="true" ng-click="showPresentation()"></span>
                 </div>
                 <div class="file" data-title="Open">
                     <a ui-sref="gallery">
                     <span class="glyphicon glyphicon-folder-open fl" aria-hidden="true" ></span>
                     </a>
                 </div>
-                <div class="file" data-title="Save" ng-click="saveSlides()">
+                <div class="file" data-title="Save" ng-click="savePresentation()">
                     <span class="glyphicon glyphicon-floppy-save fl" aria-hidden="true" ></span>
                 </div>
-                <div class="file" data-title="Delete" ng-click="show()">
+                <div class="file" data-title="Delete" ng-click="deletePresentation()">
                     <span class="glyphicon glyphicon-trash fl" aria-hidden="true" ></span>
                 </div>
                 <div class="file" data-title="Log out">
@@ -40,11 +40,11 @@
                     <br>
                       Text
                 </div>
-                <div class="tool" ng-click="submitRectangle('border: 1px solid black', true)">
+                <div class="tool" ng-click="submitRectangle('border: 1px solid black')">
                     <img src="img/rectangle.png">
                     Rectangle
                   </div>
-                <div class="tool" ng-click="submitEllipse('border: 1px solid black; border-radius: 50%', true)">
+                <div class="tool" ng-click="submitEllipse('border: 1px solid black; border-radius: 50%')">
                     <img src="img/ellips.png">
                     Ellipse
                 </div>
@@ -64,7 +64,7 @@
                                         <div id="menuVid" style="  display: none;">
                                             <div ng-click="selectStyle={zIndex:'50'}" class="elem">Top</div>
                                             <div class="elemls">Bottom</div>
-                                        </div>>
+                                        </div>
                                         <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
                                         <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].videos.splice($index,1)"></span>
                                     </div>
@@ -129,7 +129,7 @@
                                         <div ng-click="selectStyle={zIndex:'50'}" class="elem">Top</div>
                                         <div class="elemls">Bottom</div>
                                     </div>
-                                    <textarea rows="1" width="100%" height="100%"></textarea>
+                                    <textarea rows="1" style="width: 100% height: 100%"></textarea>
                                     <span class="glyphicon glyphicon-remove-sign" style="top: -16px; " ng-click="slides[slideIndex].texts.splice($index,1)"></span>
                                 </div>
                             </div>
@@ -156,70 +156,43 @@
                           style="margin-top: 10px" ng-click="submitSlide()">
                     </div>
                 </div>
-                <div class="row1 col-md-9" style="background: blue">
+                <div class="row1 col-md-9">
                     <div class="arrow" ng-click="changeShowSlideIndex(false)">
                         <span class="glyphicon glyphicon-menu-left fl" aria-hidden="true"></span>
                     </div>
 
-                    <div sort style="position: absolute; background: red;height: 120px; display: inline-block">
+                    <div sort style="position: absolute;height: 120px; display: inline-block">
                         <div ng-repeat="slide in slides track by $index" ng-if="$index < showSlideIndex+5 && $index >= showSlideIndex" style="display: inline-block">
                             <div  class="ui-widget ui-corner-all ui-state-error0 minislide">
                                 <div class="slide" id="minislide" style="transform: scale(0.3,0.25)" ng-click="setSlideIndex($index)">
-                                <div ng-repeat="video in slides[$index].videos">
-                                    <div dnd-draggable="true" class="draggable"
-                                        dnd-containment="'.slide'"
-                                        dnd-rotatable = "true"
-                                        dnd-resizable = "true"
-                                        dnd-on-dragend="" 
-                                        style="{{video.style}}">
-                                        <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[$index].videos.splice($index,1)"></span>
+                                    <div ng-repeat="video in slides[$index].videos">
+                                        <div class="draggable" 
+                                            style="{{video.style}}">
+                                            <iframe  width="100%" height="100%" ng-src="{{video.link}}" frameborder="0" allowfullscreen controls></iframe>
+                                        </div>
                                     </div>
-                                </div>
-                                <div ng-repeat="image in slides[$index].images">
-                                    <div dnd-draggable="true" class="draggable"
-                                        dnd-containment="'.slide'"
-                                        dnd-rotatable = "true"
-                                        dnd-resizable = "true"
-                                        dnd-on-dragend="" 
-                                        style="{{image.style}}">
-                                        <img width="100%" height="100%" ng-src="{{image.secure_url}}">
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[$index].images.splice($index,1)"></span>
+                                    <div ng-repeat="image in slides[$index].images">
+                                        <div class="draggable"
+                                            style="{{image.style}}">
+                                            <img width="100%" height="100%" ng-src="{{image.secure_url}}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div ng-repeat="rectangle in slides[$index].rectangles"  >
-                                    <div dnd-draggable="true" class="draggable"
-                                        dnd-containment="'.slide'"
-                                        dnd-rotatable = "true"
-                                        dnd-resizable = "true"
-                                        dnd-on-dragend="" 
-                                        style="{{rectangle.style}}" ng-style="rectStyle"
-                                         ng-dblclick="rectStyle={background: color, border:color}">
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[$index].rectangles.splice($index,1)"></span>
+                                    <div ng-repeat="rectangle in slides[$index].rectangles"  >
+                                        <div class="draggable"
+                                            style="{{rectangle.style}}" ng-style="rectStyle">
+                                        </div>
                                     </div>
-                                </div>
-                                <div ng-repeat="ellipse in slides[$index].ellipses">
-                                    <div dnd-draggable="true" class="draggable"
-                                        dnd-containment="'.slide'"
-                                        dnd-rotatable = "true"
-                                        dnd-resizable = "true"
-                                        dnd-on-dragend="" 
-                                        style={{ellipse.style}} ng-style="rectStyle"
-                                         ng-dblclick="rectStyle={background: color, border:color}">
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[$index].ellipses.splice($index,1)"></span>
+                                    <div ng-repeat="ellipse in slides[$index].ellipses">
+                                        <div class="draggable"
+                                            style={{ellipse.style}} ng-style="rectStyle">
+                                        </div>
                                     </div>
-                                </div>
-                                <div ng-repeat="text in slides[$index].texts track by $index">
-                                    <div dnd-draggable="true" class="draggable"
-                                         dnd-containment="'.slide'"
-                                         dnd-rotatable = "true"
-                                         dnd-resizable = "true"
-                                         dnd-on-dragend="" 
-                                         style="{{text.style}}">
-                                        <textarea rows="1" width="100%" height="100%"></textarea>
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[$index].texts.splice($index,1)"></span>
+                                    <div ng-repeat="text in slides[$index].texts track by $index">
+                                        <div class="draggable"
+                                             style="{{text.style}}">
+                                            <textarea rows="1" width="100%" height="100%"></textarea>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides.splice($index,1)"></span>
                             </div>

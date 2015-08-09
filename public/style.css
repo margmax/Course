@@ -96,8 +96,8 @@ a:hover{
     padding : 0 !important;
     min-width: 20px;
     min-height: 20px;
-    max-height:150px ;
-    max-width: 100px;
+    max-height: 100% ;
+    max-width: 100%;
     position: absolute;
 }
 

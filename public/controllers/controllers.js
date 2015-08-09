@@ -1,7 +1,7 @@
 var courseAppControllers = angular.module('courseAppControllers', ['ngRoute', 'angularFileUpload','colorpicker.module']);
 
-courseAppControllers.controller('appController', ['$scope', '$sce', '$upload', '$http',
-function($scope, $sce, $upload, $http) {
+courseAppControllers.controller('appController', ['$scope', '$sce', '$upload', '$http', '$location', 'service', 
+function($scope, $sce, $upload, $http, $location, service) {
     $scope.slide = {
       rectangles: [],
       ellipses: [],
@@ -10,9 +10,24 @@ function($scope, $sce, $upload, $http) {
       texts: []
     };
     $scope.size=16;
-    $scope.slides = [];
+    $scope.slides = service.slides;
+    $scope.presentations = {};
     $scope.slideIndex = 0;
     $scope.showSlideIndex = 0;
+    $scope.presentationName = service.presentationName;
+    $scope.tags = [];
+
+    $scope.submitPresentation = function() {
+      if ($scope.presentations === null) {
+        $location.path('/app');
+        return;
+      }
+      if ($scope.presentations[$scope.presentationName] === undefined) {
+        $location.path('/app');
+        return;
+      }
+      alert("This name is busy.")
+    }
 
     $scope.setSlideIndex = function(index) {
       $('.rectangle').each(function(index, element){
@@ -59,7 +74,7 @@ function($scope, $sce, $upload, $http) {
     $scope.chooseVideo = function() {
       var s = prompt("Enter the link:", '');
       if (s !== '' && s !== null) 
-        $scope.submitVideo(s.replace('https://youtu.be/', 'http://www.youtube.com/embed/'), true);
+        $scope.submitVideo(s.replace('https://youtu.be/', 'http://www.youtube.com/embed/'));
       return;
     }
 
@@ -113,9 +128,9 @@ function($scope, $sce, $upload, $http) {
         }
     }
 
-    $scope.submitVideo = function(linkS, boolS) {
-      linkS = $sce.trustAsResourceUrl(linkS);
-      $scope.slides[$scope.slideIndex].videos.push({link: linkS, boolShow: boolS, style: ""});
+    $scope.submitVideo = function(linkS) {
+      var linkU = $sce.trustAsResourceUrl(linkS);
+      $scope.slides[$scope.slideIndex].videos.push({link: linkU, linkS: linkS, style: ""});
     }
     $scope.submitText=function(){
         $scope.slides[$scope.slideIndex].texts.push({style: ""});
@@ -124,11 +139,11 @@ function($scope, $sce, $upload, $http) {
         $scope.slides.push(angular.copy($scope.slide));
     }
 
-    $scope.submitRectangle = function(styleS, boolS) {
-        $scope.slides[$scope.slideIndex].rectangles.push({style: styleS, boolShow: boolS});
+    $scope.submitRectangle = function(styleS) {
+        $scope.slides[$scope.slideIndex].rectangles.push({style: styleS});
     }
-    $scope.submitEllipse = function(styleS, boolS) {
-        $scope.slides[$scope.slideIndex].ellipses.push({style: styleS, boolShow: boolS});
+    $scope.submitEllipse = function(styleS) {
+        $scope.slides[$scope.slideIndex].ellipses.push({style: styleS});
     }
     $scope.$watch('files', function() {
       if (!$scope.files) return;
@@ -152,21 +167,46 @@ function($scope, $sce, $upload, $http) {
       });
     });
 
+    $scope.showPresentation = function() {
+      $location.path('/fullscreen');
+    }
 
-    $scope.saveSlides = function() {
-      $http.post('/userData', $scope.slides);
+    $scope.deletePresentation = function() {
+      delete $scope.presentations[$scope.presentationName];
+      $http.post('/userData', $scope.presentations);
+      $location.path('/gallery');
     }
-    $scope.load = function() {
-      $http.get('/userData').success(function(res) {
-        $scope.slides = JSON.parse(res.data);
-      });
-    }
-    
 
-    $scope.show = function() {
-      console.log($scope.slides.length);
+    $scope.savePresentation = function() {
+      $scope.setSlideIndex($scope.slideIndex);
+      $scope.presentations[$scope.presentationName] = $scope.slides;
+      $http.post('/userData', $scope.presentations);
+      alert("Saved.");
     }
+    $scope.loadPresentation = function(name) {
+      service.slides = $scope.presentations[name];
+      for (var j = 0; j < service.slides.length; j++)
+        if (service.slides[j].videos !== undefined)
+          for (var i = 0; i < service.slides[j].videos.length; i++) {
+            service.slides[j].videos[i].link = $sce.trustAsResourceUrl(service.slides[j].videos[i].linkS);
+          }
+      service.presentationName = name;
+      $location.path('/app');
+    }
+
+    $http.get('/userData').success(function(res) {
+        $scope.presentations = JSON.parse(res.data);
+    });
 }]);
+
+
+
+
+courseAppControllers.service("service", function Service() {
+  var service = this;
+  service.presentationName = null;
+  service.slides = [];
+})
 
 
 

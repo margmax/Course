@@ -12,13 +12,13 @@
 
         <label>Title:</label>
         <br>
-        <input type="text" name="title" id="title" placeholder="Title" required="true" style="color:black" ng-model="title"/>
+        <input type="text" name="title" id="title" placeholder="Title" required="true" style="color:black" ng-model="presentationName.presentationName"/>
         <br>
         <label>Tags:</label>
         <br>
         <input type="text" name="tags" id="tags" placeholder="Tags" required="true" style="color:black" ng-model="tags"/>
         <br><br>
-        <button ui-sref="app" type="submit" class="btn btn-default" name="signin" id="signin" style="margin-bottom: 25px;">
+        <button ng-click="submitPresentation()" type="submit" class="btn btn-default" name="signin" id="signin" style="margin-bottom: 25px;">
             + Create
         </button>
 
