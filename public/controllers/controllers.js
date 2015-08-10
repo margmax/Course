@@ -11,18 +11,22 @@ function($scope, $sce, $upload, $http, $location, service) {
     };
     $scope.size=16;
     $scope.slides = service.slides;
-    $scope.presentations = {};
+    $scope.presentations = service.presentations;
+    debugger;
     $scope.slideIndex = 0;
     $scope.showSlideIndex = 0;
     $scope.presentationName = service.presentationName;
     $scope.tags = [];
 
     $scope.submitPresentation = function() {
+      debugger;
       if ($scope.presentations === null) {
+        service.presentationName = $scope.presentationName;
         $location.path('/app');
         return;
       }
       if ($scope.presentations[$scope.presentationName] === undefined) {
+        service.presentationName = $scope.presentationName;
         $location.path('/app');
         return;
       }
@@ -179,8 +183,9 @@ function($scope, $sce, $upload, $http, $location, service) {
 
     $scope.savePresentation = function() {
       $scope.setSlideIndex($scope.slideIndex);
-      $scope.presentations[$scope.presentationName] = $scope.slides;
-      $http.post('/userData', $scope.presentations);
+      debugger;
+      service.presentations[$scope.presentationName] = $scope.slides;
+      $http.post('/userData', service.presentations);
       alert("Saved.");
     }
     $scope.loadPresentation = function(name) {
@@ -195,7 +200,7 @@ function($scope, $sce, $upload, $http, $location, service) {
     }
 
     $http.get('/userData').success(function(res) {
-        $scope.presentations = JSON.parse(res.data);
+        service.presentations = JSON.parse(res.data);
     });
 }]);
 
@@ -206,6 +211,7 @@ courseAppControllers.service("service", function Service() {
   var service = this;
   service.presentationName = null;
   service.slides = [];
+  service.presentations = {};
 })
 
 
