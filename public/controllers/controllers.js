@@ -1,7 +1,7 @@
-var courseAppControllers = angular.module('courseAppControllers', ['ngRoute', 'angularFileUpload','colorpicker.module']);
+var courseAppControllers = angular.module('courseAppControllers', ['ngRoute', 'angularFileUpload','colorpicker.module','FBAngular']);
 
-courseAppControllers.controller('appController', ['$scope', '$sce', '$upload', '$http', '$location', 'service', 
-function($scope, $sce, $upload, $http, $location, service) {
+courseAppControllers.controller('appController', ['$scope', '$sce', '$upload', '$http', '$location', 'service', 'Fullscreen',
+function($scope, $sce, $upload, $http, $location, service,Fullscreen) {
     $scope.slide = {
       rectangles: [],
       ellipses: [],
@@ -12,14 +12,12 @@ function($scope, $sce, $upload, $http, $location, service) {
     $scope.size=16;
     $scope.slides = service.slides;
     $scope.presentations = service.presentations;
-    debugger;
     $scope.slideIndex = 0;
     $scope.showSlideIndex = 0;
     $scope.presentationName = service.presentationName;
     $scope.tags = [];
 
     $scope.submitPresentation = function() {
-      debugger;
       if ($scope.presentations === null) {
         service.presentationName = $scope.presentationName;
         $location.path('/app');
@@ -183,7 +181,6 @@ function($scope, $sce, $upload, $http, $location, service) {
 
     $scope.savePresentation = function() {
       $scope.setSlideIndex($scope.slideIndex);
-      debugger;
       service.presentations[$scope.presentationName] = $scope.slides;
       $http.post('/userData', service.presentations);
       alert("Saved.");
@@ -200,8 +197,17 @@ function($scope, $sce, $upload, $http, $location, service) {
     }
 
     $http.get('/userData').success(function(res) {
-        service.presentations = JSON.parse(res.data);
+      if (JSON.parse(res.data) === null) return;
+      service.presentations = JSON.parse(res.data);
     });
+
+    $scope.goFullscreen = function () {
+        alert('sdefghn');
+        if (Fullscreen.isEnabled())
+            Fullscreen.cancel();
+        else
+            Fullscreen.all();
+    }
 }]);
 
 

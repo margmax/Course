@@ -3,7 +3,8 @@ var CourseApp = angular.module('CourseApp', [
     'courseAppControllers',
     'dnd',
     'cloudinary',
-    'colorpicker.module'
+    'colorpicker.module',
+    'FBAngular'
   ]);
 
 CourseApp.factory("sizeContainer", function(){
@@ -49,7 +50,7 @@ CourseApp.directive("cloud", function(){
         },
         link: function(scope, element, attrs){
             var word_list = [];
-            var words=['dfg','ertghy','wertghyj','dfdgh','erf'];
+            var words=['Nature','Life','justdoit','sport','Smile','love'];
             for(var i=0;i<words.length;i++){
                 var tag={};
                 tag.text=words[i];

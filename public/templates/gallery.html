@@ -9,14 +9,14 @@
             <div class="presentation" ng-click="loadPresentation(key)">
                 <div class="title">{{key}}</div>
                 <div class="firstside">
-                   
+
                 </div>
                  <div ng-repeat="video in presentations[key].slides[0].videos">
                                     <div dnd-draggable="true" class="draggable video"
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
-                                        dnd-on-dragend="" 
+                                        dnd-on-dragend=""
                                         style="{{video.style}}" ng-style="selectStyle"
                                          ng-dblclick="showMenuVid()">
                                         <div id="menuVid" style="  display: none;">
@@ -32,7 +32,7 @@
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
-                                        dnd-on-dragend="" 
+                                        dnd-on-dragend=""
                                         style="{{image.style}}" ng-style="selectStyle"
                                         ng-dblclick="showMenuImg()">
                                         <div id="menuImg" style="  display: none;">
@@ -48,15 +48,9 @@
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
-                                        dnd-on-dragend="" 
+                                        dnd-on-dragend=""
                                         style="{{rectangle.style}}" ng-style="rectStyle"
                                          ng-dblclick="showMenuRec()">
-                                        <div id="menuRec" style="  display: none;">
-                                            <div class="elem" ng-click="rectStyle={background: color, border:color}">Color</div>
-                                            <div class="elem" ng-click="rectStyle={background: color, border:color,zIndex:'50'}">Top</div>
-                                            <div class="elemls" ng-click="rectStyle={background: color, border:color,zIndex:'1'}">Bottom</div>
-                                        </div>
-                                        <span class="glyphicon glyphicon-remove-sign" style="top: -16px; left: 100%" ng-click="slides[slideIndex].rectangles.splice($index,1)"></span>
                                     </div>
                             </div>
                             <div ng-repeat="ellipse in presentations[key].slides[0].ellipses">
@@ -64,7 +58,7 @@
                                         dnd-containment="'.slide'"
                                         dnd-rotatable = "true"
                                         dnd-resizable = "true"
-                                        dnd-on-dragend="" 
+                                        dnd-on-dragend=""
                                         style={{ellipse.style}} ng-style="rectStyle"
                                          ng-dblclick="showMenuEll()">
                                         <div id="menuEll" style="  display: none;">
@@ -80,7 +74,7 @@
                                      dnd-containment="'.slide'"
                                      dnd-rotatable = "true"
                                      dnd-resizable = "true"
-                                     dnd-on-dragend="" 
+                                     dnd-on-dragend=""
                                      style="{{text.style}}" ng-style="selectStyle"
                                      ng-dblclick="showMenuTex()">
                                     <div id="menuTex" style="  display: none;">
